@@ -5,6 +5,7 @@ import 'package:chalak_app/domain/auth/repository/i_auth_facade.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import 'firebase_user_mapper.dart';
 
 @LazySingleton(as: IAuthFacade)
@@ -36,7 +37,8 @@ class FirebaseAuthFacade implements IAuthFacade {
         );
       }
       return right(unit);
-    } on FirebaseAuthException catch (_) {
+    } on FirebaseAuthException catch (e) {
+      Logger().e(e.message);
       return left(const AuthFailure.serverError());
     }
   }
@@ -46,7 +48,9 @@ class FirebaseAuthFacade implements IAuthFacade {
 
   @override
   Future<Either<AuthFailure, Unit>> createNewAccount(
-      String mEmail, String mPassword) async {
+    String mEmail,
+    String mPassword,
+  ) async {
     try {
       final UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(email: mEmail, password: mPassword);

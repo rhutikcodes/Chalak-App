@@ -1,4 +1,3 @@
-import 'package:chalak_app/domain/auth/entity/route_entity.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:logger/logger.dart';
@@ -25,7 +24,6 @@ class Database {
           "truckCapacity": 0,
           "transporterName": "transporterName",
           "drivingExperience": 0,
-          "interesetedRoutes": "interestedRoutes",
           "natureOfMaterial": "natureOfMaterial",
           "weightOfMaterial": 0,
           "quantity": 0,
@@ -60,7 +58,6 @@ class Database {
     required int? truckCapacity,
     required String? transporterName,
     required int? drivingExperience,
-    required List<RouteEntity>? interesetedRoutes,
     required String? natureOfMaterial,
     required double? weightOfMaterial,
     required int? quantity,
@@ -80,7 +77,6 @@ class Database {
         "truckCapacity": truckCapacity,
         "transporterName": transporterName,
         "drivingExperience": drivingExperience,
-        "interesetedRoutes": interesetedRoutes,
         "natureOfMaterial": natureOfMaterial,
         "weightOfMaterial": weightOfMaterial,
         "quantity": quantity,
