@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'driver_entity.dart';
+part of 'user_entity.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_DriverEntity _$$_DriverEntityFromJson(Map<String, dynamic> json) =>
-    _$_DriverEntity(
+_$_UserEntity _$$_UserEntityFromJson(Map<String, dynamic> json) =>
+    _$_UserEntity(
       name: json['name'] as String,
       age: json['age'] as int,
       truckNumber: json['truckNumber'] as String,
@@ -18,9 +18,15 @@ _$_DriverEntity _$$_DriverEntityFromJson(Map<String, dynamic> json) =>
       interesetedRoutes: (json['interesetedRoutes'] as List<dynamic>)
           .map((e) => RouteEntity.fromJson(e as Map<String, dynamic>))
           .toList(),
+      natureOfMaterial: json['natureOfMaterial'] as String,
+      weightOfMaterial: (json['weightOfMaterial'] as num).toDouble(),
+      quantity: json['quantity'] as int,
+      city: json['city'] as String,
+      state: json['state'] as String,
+      userType: json['userType'] as String,
     );
 
-Map<String, dynamic> _$$_DriverEntityToJson(_$_DriverEntity instance) =>
+Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
     <String, dynamic>{
       'name': instance.name,
       'age': instance.age,
@@ -30,4 +36,10 @@ Map<String, dynamic> _$$_DriverEntityToJson(_$_DriverEntity instance) =>
       'transporterName': instance.transporterName,
       'drivingExperience': instance.drivingExperience,
       'interesetedRoutes': instance.interesetedRoutes,
+      'natureOfMaterial': instance.natureOfMaterial,
+      'weightOfMaterial': instance.weightOfMaterial,
+      'quantity': instance.quantity,
+      'city': instance.city,
+      'state': instance.state,
+      'userType': instance.userType,
     };
