@@ -15,15 +15,13 @@ _$_UserEntity _$$_UserEntityFromJson(Map<String, dynamic> json) =>
       truckCapacity: json['truckCapacity'] as int,
       transporterName: json['transporterName'] as String,
       drivingExperience: json['drivingExperience'] as int,
-      interesetedRoutes: (json['interesetedRoutes'] as List<dynamic>)
-          .map((e) => RouteEntity.fromJson(e as Map<String, dynamic>))
-          .toList(),
       natureOfMaterial: json['natureOfMaterial'] as String,
       weightOfMaterial: (json['weightOfMaterial'] as num).toDouble(),
       quantity: json['quantity'] as int,
       city: json['city'] as String,
       state: json['state'] as String,
       userType: json['userType'] as String,
+      uid: json['uid'] as String,
     );
 
 Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
@@ -35,11 +33,11 @@ Map<String, dynamic> _$$_UserEntityToJson(_$_UserEntity instance) =>
       'truckCapacity': instance.truckCapacity,
       'transporterName': instance.transporterName,
       'drivingExperience': instance.drivingExperience,
-      'interesetedRoutes': instance.interesetedRoutes,
       'natureOfMaterial': instance.natureOfMaterial,
       'weightOfMaterial': instance.weightOfMaterial,
       'quantity': instance.quantity,
       'city': instance.city,
       'state': instance.state,
       'userType': instance.userType,
+      'uid': instance.uid,
     };

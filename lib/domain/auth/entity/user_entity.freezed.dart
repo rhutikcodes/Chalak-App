@@ -30,13 +30,13 @@ class _$UserEntityTearOff {
       required int truckCapacity,
       required String transporterName,
       required int drivingExperience,
-      required List<RouteEntity> interesetedRoutes,
       required String natureOfMaterial,
       required double weightOfMaterial,
       required int quantity,
       required String city,
       required String state,
-      required String userType}) {
+      required String userType,
+      required String uid}) {
     return _UserEntity(
       name: name,
       age: age,
@@ -45,13 +45,13 @@ class _$UserEntityTearOff {
       truckCapacity: truckCapacity,
       transporterName: transporterName,
       drivingExperience: drivingExperience,
-      interesetedRoutes: interesetedRoutes,
       natureOfMaterial: natureOfMaterial,
       weightOfMaterial: weightOfMaterial,
       quantity: quantity,
       city: city,
       state: state,
       userType: userType,
+      uid: uid,
     );
   }
 
@@ -72,13 +72,13 @@ mixin _$UserEntity {
   int get truckCapacity => throw _privateConstructorUsedError;
   String get transporterName => throw _privateConstructorUsedError;
   int get drivingExperience => throw _privateConstructorUsedError;
-  List<RouteEntity> get interesetedRoutes => throw _privateConstructorUsedError;
   String get natureOfMaterial => throw _privateConstructorUsedError;
   double get weightOfMaterial => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
   String get state => throw _privateConstructorUsedError;
   String get userType => throw _privateConstructorUsedError;
+  String get uid => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -99,13 +99,13 @@ abstract class $UserEntityCopyWith<$Res> {
       int truckCapacity,
       String transporterName,
       int drivingExperience,
-      List<RouteEntity> interesetedRoutes,
       String natureOfMaterial,
       double weightOfMaterial,
       int quantity,
       String city,
       String state,
-      String userType});
+      String userType,
+      String uid});
 }
 
 /// @nodoc
@@ -125,13 +125,13 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
     Object? truckCapacity = freezed,
     Object? transporterName = freezed,
     Object? drivingExperience = freezed,
-    Object? interesetedRoutes = freezed,
     Object? natureOfMaterial = freezed,
     Object? weightOfMaterial = freezed,
     Object? quantity = freezed,
     Object? city = freezed,
     Object? state = freezed,
     Object? userType = freezed,
+    Object? uid = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -162,10 +162,6 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
           ? _value.drivingExperience
           : drivingExperience // ignore: cast_nullable_to_non_nullable
               as int,
-      interesetedRoutes: interesetedRoutes == freezed
-          ? _value.interesetedRoutes
-          : interesetedRoutes // ignore: cast_nullable_to_non_nullable
-              as List<RouteEntity>,
       natureOfMaterial: natureOfMaterial == freezed
           ? _value.natureOfMaterial
           : natureOfMaterial // ignore: cast_nullable_to_non_nullable
@@ -190,6 +186,10 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
               as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -208,13 +208,13 @@ abstract class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
       int truckCapacity,
       String transporterName,
       int drivingExperience,
-      List<RouteEntity> interesetedRoutes,
       String natureOfMaterial,
       double weightOfMaterial,
       int quantity,
       String city,
       String state,
-      String userType});
+      String userType,
+      String uid});
 }
 
 /// @nodoc
@@ -236,13 +236,13 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
     Object? truckCapacity = freezed,
     Object? transporterName = freezed,
     Object? drivingExperience = freezed,
-    Object? interesetedRoutes = freezed,
     Object? natureOfMaterial = freezed,
     Object? weightOfMaterial = freezed,
     Object? quantity = freezed,
     Object? city = freezed,
     Object? state = freezed,
     Object? userType = freezed,
+    Object? uid = freezed,
   }) {
     return _then(_UserEntity(
       name: name == freezed
@@ -273,10 +273,6 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
           ? _value.drivingExperience
           : drivingExperience // ignore: cast_nullable_to_non_nullable
               as int,
-      interesetedRoutes: interesetedRoutes == freezed
-          ? _value.interesetedRoutes
-          : interesetedRoutes // ignore: cast_nullable_to_non_nullable
-              as List<RouteEntity>,
       natureOfMaterial: natureOfMaterial == freezed
           ? _value.natureOfMaterial
           : natureOfMaterial // ignore: cast_nullable_to_non_nullable
@@ -301,6 +297,10 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
               as String,
+      uid: uid == freezed
+          ? _value.uid
+          : uid // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -316,13 +316,13 @@ class _$_UserEntity implements _UserEntity {
       required this.truckCapacity,
       required this.transporterName,
       required this.drivingExperience,
-      required this.interesetedRoutes,
       required this.natureOfMaterial,
       required this.weightOfMaterial,
       required this.quantity,
       required this.city,
       required this.state,
-      required this.userType});
+      required this.userType,
+      required this.uid});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
@@ -342,8 +342,6 @@ class _$_UserEntity implements _UserEntity {
   @override
   final int drivingExperience;
   @override
-  final List<RouteEntity> interesetedRoutes;
-  @override
   final String natureOfMaterial;
   @override
   final double weightOfMaterial;
@@ -355,10 +353,12 @@ class _$_UserEntity implements _UserEntity {
   final String state;
   @override
   final String userType;
+  @override
+  final String uid;
 
   @override
   String toString() {
-    return 'UserEntity(name: $name, age: $age, truckNumber: $truckNumber, mobileNumber: $mobileNumber, truckCapacity: $truckCapacity, transporterName: $transporterName, drivingExperience: $drivingExperience, interesetedRoutes: $interesetedRoutes, natureOfMaterial: $natureOfMaterial, weightOfMaterial: $weightOfMaterial, quantity: $quantity, city: $city, state: $state, userType: $userType)';
+    return 'UserEntity(name: $name, age: $age, truckNumber: $truckNumber, mobileNumber: $mobileNumber, truckCapacity: $truckCapacity, transporterName: $transporterName, drivingExperience: $drivingExperience, natureOfMaterial: $natureOfMaterial, weightOfMaterial: $weightOfMaterial, quantity: $quantity, city: $city, state: $state, userType: $userType, uid: $uid)';
   }
 
   @override
@@ -379,15 +379,14 @@ class _$_UserEntity implements _UserEntity {
             const DeepCollectionEquality()
                 .equals(other.drivingExperience, drivingExperience) &&
             const DeepCollectionEquality()
-                .equals(other.interesetedRoutes, interesetedRoutes) &&
-            const DeepCollectionEquality()
                 .equals(other.natureOfMaterial, natureOfMaterial) &&
             const DeepCollectionEquality()
                 .equals(other.weightOfMaterial, weightOfMaterial) &&
             const DeepCollectionEquality().equals(other.quantity, quantity) &&
             const DeepCollectionEquality().equals(other.city, city) &&
             const DeepCollectionEquality().equals(other.state, state) &&
-            const DeepCollectionEquality().equals(other.userType, userType));
+            const DeepCollectionEquality().equals(other.userType, userType) &&
+            const DeepCollectionEquality().equals(other.uid, uid));
   }
 
   @override
@@ -400,13 +399,13 @@ class _$_UserEntity implements _UserEntity {
       const DeepCollectionEquality().hash(truckCapacity),
       const DeepCollectionEquality().hash(transporterName),
       const DeepCollectionEquality().hash(drivingExperience),
-      const DeepCollectionEquality().hash(interesetedRoutes),
       const DeepCollectionEquality().hash(natureOfMaterial),
       const DeepCollectionEquality().hash(weightOfMaterial),
       const DeepCollectionEquality().hash(quantity),
       const DeepCollectionEquality().hash(city),
       const DeepCollectionEquality().hash(state),
-      const DeepCollectionEquality().hash(userType));
+      const DeepCollectionEquality().hash(userType),
+      const DeepCollectionEquality().hash(uid));
 
   @JsonKey(ignore: true)
   @override
@@ -428,13 +427,13 @@ abstract class _UserEntity implements UserEntity {
       required int truckCapacity,
       required String transporterName,
       required int drivingExperience,
-      required List<RouteEntity> interesetedRoutes,
       required String natureOfMaterial,
       required double weightOfMaterial,
       required int quantity,
       required String city,
       required String state,
-      required String userType}) = _$_UserEntity;
+      required String userType,
+      required String uid}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
@@ -454,8 +453,6 @@ abstract class _UserEntity implements UserEntity {
   @override
   int get drivingExperience;
   @override
-  List<RouteEntity> get interesetedRoutes;
-  @override
   String get natureOfMaterial;
   @override
   double get weightOfMaterial;
@@ -467,6 +464,8 @@ abstract class _UserEntity implements UserEntity {
   String get state;
   @override
   String get userType;
+  @override
+  String get uid;
   @override
   @JsonKey(ignore: true)
   _$UserEntityCopyWith<_UserEntity> get copyWith =>
