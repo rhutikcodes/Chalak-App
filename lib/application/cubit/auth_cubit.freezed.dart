@@ -18,8 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$AuthStateTearOff {
   const _$AuthStateTearOff();
 
-  _Initial initial() {
-    return const _Initial();
+  _Loading loading() {
+    return const _Loading();
   }
 
   _Authenticated authenticated({required UserEntity userEntity}) {
@@ -52,7 +52,7 @@ const $AuthState = _$AuthStateTearOff();
 mixin _$AuthState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserEntity userEntity) authenticated,
     required TResult Function(UserEntity userEntity) incompleteSignUp,
     required TResult Function() unauthenticated,
@@ -61,7 +61,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -70,7 +70,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -80,7 +80,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_IncompleteSignUp value) incompleteSignUp,
     required TResult Function(_Unauthenticated value) unauthenticated,
@@ -89,7 +89,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -98,7 +98,7 @@ mixin _$AuthState {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -124,35 +124,35 @@ class _$AuthStateCopyWithImpl<$Res> implements $AuthStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialCopyWith<$Res> {
-  factory _$InitialCopyWith(_Initial value, $Res Function(_Initial) then) =
-      __$InitialCopyWithImpl<$Res>;
+abstract class _$LoadingCopyWith<$Res> {
+  factory _$LoadingCopyWith(_Loading value, $Res Function(_Loading) then) =
+      __$LoadingCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$InitialCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
-    implements _$InitialCopyWith<$Res> {
-  __$InitialCopyWithImpl(_Initial _value, $Res Function(_Initial) _then)
-      : super(_value, (v) => _then(v as _Initial));
+class __$LoadingCopyWithImpl<$Res> extends _$AuthStateCopyWithImpl<$Res>
+    implements _$LoadingCopyWith<$Res> {
+  __$LoadingCopyWithImpl(_Loading _value, $Res Function(_Loading) _then)
+      : super(_value, (v) => _then(v as _Loading));
 
   @override
-  _Initial get _value => super._value as _Initial;
+  _Loading get _value => super._value as _Loading;
 }
 
 /// @nodoc
 
-class _$_Initial implements _Initial {
-  const _$_Initial();
+class _$_Loading implements _Loading {
+  const _$_Loading();
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'AuthState.loading()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _Initial);
+        (other.runtimeType == runtimeType && other is _Loading);
   }
 
   @override
@@ -161,39 +161,39 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserEntity userEntity) authenticated,
     required TResult Function(UserEntity userEntity) incompleteSignUp,
     required TResult Function() unauthenticated,
     required TResult Function(String message) failure,
   }) {
-    return initial();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
     TResult Function(String message)? failure,
   }) {
-    return initial?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
     TResult Function(String message)? failure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -201,46 +201,46 @@ class _$_Initial implements _Initial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_IncompleteSignUp value) incompleteSignUp,
     required TResult Function(_Unauthenticated value) unauthenticated,
     required TResult Function(_Failure value) failure,
   }) {
-    return initial(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Failure value)? failure,
   }) {
-    return initial?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
     TResult Function(_Failure value)? failure,
     required TResult orElse(),
   }) {
-    if (initial != null) {
-      return initial(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
 }
 
-abstract class _Initial implements AuthState {
-  const factory _Initial() = _$_Initial;
+abstract class _Loading implements AuthState {
+  const factory _Loading() = _$_Loading;
 }
 
 /// @nodoc
@@ -317,7 +317,7 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserEntity userEntity) authenticated,
     required TResult Function(UserEntity userEntity) incompleteSignUp,
     required TResult Function() unauthenticated,
@@ -329,7 +329,7 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -341,7 +341,7 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -357,7 +357,7 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_IncompleteSignUp value) incompleteSignUp,
     required TResult Function(_Unauthenticated value) unauthenticated,
@@ -369,7 +369,7 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -381,7 +381,7 @@ class _$_Authenticated implements _Authenticated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -480,7 +480,7 @@ class _$_IncompleteSignUp implements _IncompleteSignUp {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserEntity userEntity) authenticated,
     required TResult Function(UserEntity userEntity) incompleteSignUp,
     required TResult Function() unauthenticated,
@@ -492,7 +492,7 @@ class _$_IncompleteSignUp implements _IncompleteSignUp {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -504,7 +504,7 @@ class _$_IncompleteSignUp implements _IncompleteSignUp {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -520,7 +520,7 @@ class _$_IncompleteSignUp implements _IncompleteSignUp {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_IncompleteSignUp value) incompleteSignUp,
     required TResult Function(_Unauthenticated value) unauthenticated,
@@ -532,7 +532,7 @@ class _$_IncompleteSignUp implements _IncompleteSignUp {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -544,7 +544,7 @@ class _$_IncompleteSignUp implements _IncompleteSignUp {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -608,7 +608,7 @@ class _$_Unauthenticated implements _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserEntity userEntity) authenticated,
     required TResult Function(UserEntity userEntity) incompleteSignUp,
     required TResult Function() unauthenticated,
@@ -620,7 +620,7 @@ class _$_Unauthenticated implements _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -632,7 +632,7 @@ class _$_Unauthenticated implements _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -648,7 +648,7 @@ class _$_Unauthenticated implements _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_IncompleteSignUp value) incompleteSignUp,
     required TResult Function(_Unauthenticated value) unauthenticated,
@@ -660,7 +660,7 @@ class _$_Unauthenticated implements _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -672,7 +672,7 @@ class _$_Unauthenticated implements _Unauthenticated {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -752,7 +752,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() initial,
+    required TResult Function() loading,
     required TResult Function(UserEntity userEntity) authenticated,
     required TResult Function(UserEntity userEntity) incompleteSignUp,
     required TResult Function() unauthenticated,
@@ -764,7 +764,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -776,7 +776,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
+    TResult Function()? loading,
     TResult Function(UserEntity userEntity)? authenticated,
     TResult Function(UserEntity userEntity)? incompleteSignUp,
     TResult Function()? unauthenticated,
@@ -792,7 +792,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_Initial value) initial,
+    required TResult Function(_Loading value) loading,
     required TResult Function(_Authenticated value) authenticated,
     required TResult Function(_IncompleteSignUp value) incompleteSignUp,
     required TResult Function(_Unauthenticated value) unauthenticated,
@@ -804,7 +804,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,
@@ -816,7 +816,7 @@ class _$_Failure implements _Failure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Initial value)? initial,
+    TResult Function(_Loading value)? loading,
     TResult Function(_Authenticated value)? authenticated,
     TResult Function(_IncompleteSignUp value)? incompleteSignUp,
     TResult Function(_Unauthenticated value)? unauthenticated,

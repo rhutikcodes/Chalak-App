@@ -1,22 +1,21 @@
+import 'dart:io';
+
 import 'package:bloc/bloc.dart';
 import 'package:chalak_app/core/database.dart';
-import 'package:chalak_app/domain/auth/entity/route_entity.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:chalak_app/domain/auth/repository/i_auth_facade.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
-import 'dart:io';
 
-part 'auth_state.dart';
 part 'auth_cubit.freezed.dart';
+part 'auth_state.dart';
 
 @Injectable()
 class AuthCubit extends Cubit<AuthState> {
   final IAuthFacade _authFacade;
 
-  AuthCubit(this._authFacade) : super(const AuthState.initial());
-
+  AuthCubit(this._authFacade) : super(const AuthState.loading());
   Future<void> handleAppStarted() async {
     Logger().i('AuthCubit->handleAppStarted');
     try {
@@ -70,7 +69,6 @@ class AuthCubit extends Cubit<AuthState> {
     required int? truckCapacity,
     required String? transporterName,
     required int? drivingExperience,
-    required List<RouteEntity>? interesetedRoutes,
     required String? natureOfMaterial,
     required double? weightOfMaterial,
     required int? quantity,
@@ -88,7 +86,6 @@ class AuthCubit extends Cubit<AuthState> {
       truckCapacity: truckCapacity,
       transporterName: transporterName,
       drivingExperience: drivingExperience,
-      interesetedRoutes: interesetedRoutes,
       natureOfMaterial: natureOfMaterial,
       weightOfMaterial: weightOfMaterial,
       quantity: quantity,
