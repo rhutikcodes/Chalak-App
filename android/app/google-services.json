@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "585550117547",
+    "project_id": "chalak-496cf",
+    "storage_bucket": "chalak-496cf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:585550117547:android:0a4bfc8fb7ec3ec90b95ee",
+        "android_client_info": {
+          "package_name": "com.example.chalak_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "585550117547-g2lh3h6b5f78p1phd5qqiu7fm7l0sfua.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4lwzFIEUL_WB76_eDZl7_lhaWbegzsO8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "585550117547-g2lh3h6b5f78p1phd5qqiu7fm7l0sfua.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
