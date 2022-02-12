@@ -1,7 +1,7 @@
 import 'package:chalak_app/core/palette.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
-import 'package:chalak_app/presentation/auth/widgets/dealerForm.dart';
-import 'package:chalak_app/presentation/auth/widgets/driverForm.dart';
+import 'package:chalak_app/presentation/auth/widgets/dealer_form.dart';
+import 'package:chalak_app/presentation/auth/widgets/driver_form.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -83,8 +83,14 @@ class _SignUpScreenState extends State<SignUpScreen>
                 //   userEntity: widget.userEntity,
                 //   key: UniqueKey(),
                 // ),
-                const DealerForm(),
-                const DriverForm(),
+                DealerForm(
+                  userEntity: widget.userEntity,
+           
+                ),
+                DriverForm(
+                  userEntity: widget.userEntity,
+          
+                ),
               ],
             ),
           )

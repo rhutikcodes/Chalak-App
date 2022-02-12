@@ -1,32 +1,51 @@
-import 'package:chalak_app/core/city_state.dart';
+import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:chalak_app/presentation/auth/widgets/text_field_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:searchfield/searchfield.dart';
 
-class DealerForm extends StatelessWidget {
-  const DealerForm({Key? key}) : super(key: key);
+import '../../../application/cubit/auth_cubit.dart';
+import '../../../core/city_state.dart';
+
+class DealerForm extends StatefulWidget {
+  const DealerForm({Key? key, required this.userEntity}) : super(key: key);
+  final UserEntity userEntity;
+  static final _formKeyDealer = GlobalKey<FormState>();
+
+  @override
+  State<DealerForm> createState() => _DealerFormState();
+}
+
+class _DealerFormState extends State<DealerForm> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController mobileNumberController = TextEditingController();
+  final TextEditingController natureOfMaterialController =
+      TextEditingController();
+  final TextEditingController weightOfMaterialController =
+      TextEditingController();
+  final TextEditingController quantityController = TextEditingController();
+  final TextEditingController cityController = TextEditingController();
+  final _citiesList =
+      kCitiesList.map((city) => '${city['name']}, ${city['state']}').toList();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    mobileNumberController.dispose();
+    natureOfMaterialController.dispose();
+    weightOfMaterialController.dispose();
+    quantityController.dispose();
+    cityController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController mobileNumberController =
-        TextEditingController();
-    final TextEditingController natureOfMaterialController =
-        TextEditingController();
-    final TextEditingController weightOfMaterialController =
-        TextEditingController();
-    final TextEditingController quantityController = TextEditingController();
-    final TextEditingController cityController = TextEditingController();
-    final TextEditingController searchController = TextEditingController();
-    final _formKeyDealer = GlobalKey<FormState>();
-    final _citiesList =
-        kCitiesList.map((city) => '${city['name']}, ${city['state']}').toList();
-        
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
-        key: _formKeyDealer,
+        key: DealerForm._formKeyDealer,
         child: Column(
           children: [
             TextFieldForm(
@@ -115,29 +134,24 @@ class DealerForm extends StatelessWidget {
               ),
               onPressed: () {
                 // Validate returns true if the form is valid, or false otherwise.
-                if (_formKeyDealer.currentState!.validate()) {
-                  // If the form is valid, display a snackbar. In the real world,
-                  // you'd often call a server or save the information in a database.
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Saving Data')),
+                if (DealerForm._formKeyDealer.currentState!.validate()) {
+                  BlocProvider.of<AuthCubit>(context).handleIncompleteSignUp(
+                    email: widget.userEntity.email,
+                    uid: widget.userEntity.uid,
+                    name: nameController.value.text,
+                    mobileNumber: int.parse(mobileNumberController.value.text),
+                    natureOfMaterial: natureOfMaterialController.value.text,
+                    weightOfMaterial:
+                        double.parse(weightOfMaterialController.value.text),
+                    quantity: int.parse(quantityController.value.text),
+                    city: cityController.value.text,
+                    age: 0,
+                    truckNumber: "truckNumber",
+                    truckCapacity: 0,
+                    transporterName: "transporterName",
+                    drivingExperience: 0,
+                    userType: "dealer",
                   );
-                  // BlocProvider.of<AuthCubit>(context).handleIncompleteSignUp(
-                  //   email: widget.userEntity.email,
-                  //   uid: widget.userEntity.uid,
-                  //   name: nameController.value.text,
-                  //   mobileNumber: int.parse(mobileNumberController.value.text),
-                  //   natureOfMaterial: natureOfMaterialController.value.text,
-                  //   weightOfMaterial:
-                  //       double.parse(weightOfMaterialController.value.text),
-                  //   quantity: int.parse(quantityController.value.text),
-                  //   city: cityController.value.text,
-                  //   age: 0,
-                  //   truckNumber: "truckNumber",
-                  //   truckCapacity: 0,
-                  //   transporterName: "transporterName",
-                  //   drivingExperience: 0,
-                  //   userType: "dealer",
-                  // );
                 }
               },
               child: const Text('Submit'),

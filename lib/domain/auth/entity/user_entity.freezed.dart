@@ -34,7 +34,6 @@ class _$UserEntityTearOff {
       required double weightOfMaterial,
       required int quantity,
       required String city,
-      required String state,
       required String userType,
       required String uid,
       required String email,
@@ -51,7 +50,6 @@ class _$UserEntityTearOff {
       weightOfMaterial: weightOfMaterial,
       quantity: quantity,
       city: city,
-      state: state,
       userType: userType,
       uid: uid,
       email: email,
@@ -80,7 +78,6 @@ mixin _$UserEntity {
   double get weightOfMaterial => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   String get city => throw _privateConstructorUsedError;
-  String get state => throw _privateConstructorUsedError;
   String get userType => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -109,7 +106,6 @@ abstract class $UserEntityCopyWith<$Res> {
       double weightOfMaterial,
       int quantity,
       String city,
-      String state,
       String userType,
       String uid,
       String email,
@@ -137,7 +133,6 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
     Object? weightOfMaterial = freezed,
     Object? quantity = freezed,
     Object? city = freezed,
-    Object? state = freezed,
     Object? userType = freezed,
     Object? uid = freezed,
     Object? email = freezed,
@@ -188,10 +183,6 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String,
       userType: userType == freezed
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
@@ -230,7 +221,6 @@ abstract class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
       double weightOfMaterial,
       int quantity,
       String city,
-      String state,
       String userType,
       String uid,
       String email,
@@ -260,7 +250,6 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
     Object? weightOfMaterial = freezed,
     Object? quantity = freezed,
     Object? city = freezed,
-    Object? state = freezed,
     Object? userType = freezed,
     Object? uid = freezed,
     Object? email = freezed,
@@ -311,10 +300,6 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
               as String,
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
-              as String,
       userType: userType == freezed
           ? _value.userType
           : userType // ignore: cast_nullable_to_non_nullable
@@ -350,7 +335,6 @@ class _$_UserEntity implements _UserEntity {
       required this.weightOfMaterial,
       required this.quantity,
       required this.city,
-      required this.state,
       required this.userType,
       required this.uid,
       required this.email,
@@ -382,8 +366,6 @@ class _$_UserEntity implements _UserEntity {
   @override
   final String city;
   @override
-  final String state;
-  @override
   final String userType;
   @override
   final String uid;
@@ -394,7 +376,7 @@ class _$_UserEntity implements _UserEntity {
 
   @override
   String toString() {
-    return 'UserEntity(name: $name, age: $age, truckNumber: $truckNumber, mobileNumber: $mobileNumber, truckCapacity: $truckCapacity, transporterName: $transporterName, drivingExperience: $drivingExperience, natureOfMaterial: $natureOfMaterial, weightOfMaterial: $weightOfMaterial, quantity: $quantity, city: $city, state: $state, userType: $userType, uid: $uid, email: $email, password: $password)';
+    return 'UserEntity(name: $name, age: $age, truckNumber: $truckNumber, mobileNumber: $mobileNumber, truckCapacity: $truckCapacity, transporterName: $transporterName, drivingExperience: $drivingExperience, natureOfMaterial: $natureOfMaterial, weightOfMaterial: $weightOfMaterial, quantity: $quantity, city: $city, userType: $userType, uid: $uid, email: $email, password: $password)';
   }
 
   @override
@@ -420,7 +402,6 @@ class _$_UserEntity implements _UserEntity {
                 .equals(other.weightOfMaterial, weightOfMaterial) &&
             const DeepCollectionEquality().equals(other.quantity, quantity) &&
             const DeepCollectionEquality().equals(other.city, city) &&
-            const DeepCollectionEquality().equals(other.state, state) &&
             const DeepCollectionEquality().equals(other.userType, userType) &&
             const DeepCollectionEquality().equals(other.uid, uid) &&
             const DeepCollectionEquality().equals(other.email, email) &&
@@ -441,7 +422,6 @@ class _$_UserEntity implements _UserEntity {
       const DeepCollectionEquality().hash(weightOfMaterial),
       const DeepCollectionEquality().hash(quantity),
       const DeepCollectionEquality().hash(city),
-      const DeepCollectionEquality().hash(state),
       const DeepCollectionEquality().hash(userType),
       const DeepCollectionEquality().hash(uid),
       const DeepCollectionEquality().hash(email),
@@ -471,7 +451,6 @@ abstract class _UserEntity implements UserEntity {
       required double weightOfMaterial,
       required int quantity,
       required String city,
-      required String state,
       required String userType,
       required String uid,
       required String email,
@@ -502,8 +481,6 @@ abstract class _UserEntity implements UserEntity {
   int get quantity;
   @override
   String get city;
-  @override
-  String get state;
   @override
   String get userType;
   @override

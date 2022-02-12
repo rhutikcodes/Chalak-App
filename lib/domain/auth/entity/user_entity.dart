@@ -16,7 +16,6 @@ class UserEntity with _$UserEntity {
     required double weightOfMaterial,
     required int quantity,
     required String city,
-    required String state,
     required String userType,
     required String uid,
     required String email,

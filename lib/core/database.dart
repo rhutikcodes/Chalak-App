@@ -30,7 +30,6 @@ class Database {
           "weightOfMaterial": 0,
           "quantity": 0,
           "city": 'city',
-          "state": "state",
           "userType": "userType",
         },
         SetOptions(merge: true),

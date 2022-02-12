@@ -1,46 +1,70 @@
+import 'package:chalak_app/application/cubit/auth_cubit.dart';
 import 'package:chalak_app/core/city_state.dart';
+import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:chalak_app/presentation/auth/widgets/text_field_form.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:searchfield/searchfield.dart';
 
 typedef StringDynamicFunc = dynamic Function(String?);
 
-class DriverForm extends StatelessWidget {
-  const DriverForm({Key? key}) : super(key: key);
+class DriverForm extends StatefulWidget {
+  const DriverForm({Key? key, required this.userEntity}) : super(key: key);
+  final UserEntity userEntity;
+  static final _formKeyDriver = GlobalKey<FormState>();
+
+  @override
+  State<DriverForm> createState() => _DriverFormState();
+}
+
+class _DriverFormState extends State<DriverForm> {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController ageController = TextEditingController();
+  final TextEditingController truckNumberController = TextEditingController();
+  final TextEditingController mobileNumberController = TextEditingController();
+  final TextEditingController truckCapacityController = TextEditingController();
+  final TextEditingController transporterNameController =
+      TextEditingController();
+  final TextEditingController drivingExperienceController =
+      TextEditingController();
+  final TextEditingController routeOneSourceController =
+      TextEditingController();
+  final TextEditingController routeTwoSourceController =
+      TextEditingController();
+  final TextEditingController routeThreeSourceController =
+      TextEditingController();
+  final TextEditingController routeOneDestinationController =
+      TextEditingController();
+  final TextEditingController routeTwoDestinationController =
+      TextEditingController();
+  final TextEditingController routeThreeDestinationController =
+      TextEditingController();
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    ageController.dispose();
+    truckNumberController.dispose();
+    mobileNumberController.dispose();
+    truckCapacityController.dispose();
+    transporterNameController.dispose();
+    drivingExperienceController.dispose();
+    routeOneSourceController.dispose();
+    routeTwoSourceController.dispose();
+    routeThreeSourceController.dispose();
+    routeOneDestinationController.dispose();
+    routeTwoDestinationController.dispose();
+    routeThreeDestinationController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController nameController = TextEditingController();
-    final TextEditingController ageController = TextEditingController();
-    final TextEditingController truckNumberController = TextEditingController();
-    final TextEditingController mobileNumberController =
-        TextEditingController();
-    final TextEditingController truckCapacityController =
-        TextEditingController();
-    final TextEditingController transporterNameController =
-        TextEditingController();
-    final TextEditingController drivingExperienceController =
-        TextEditingController();
-    final TextEditingController routeOneSourceController =
-        TextEditingController();
-    final TextEditingController routeTwoSourceController =
-        TextEditingController();
-    final TextEditingController routeThreeSourceController =
-        TextEditingController();
-    final TextEditingController routeOneDestinationController =
-        TextEditingController();
-    final TextEditingController routeTwoDestinationController =
-        TextEditingController();
-    final TextEditingController routeThreeDestinationController =
-        TextEditingController();
-
-    final _formKeyDriver = GlobalKey<FormState>();
-
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
-        key: _formKeyDriver,
+        key: DriverForm._formKeyDriver,
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -142,12 +166,27 @@ class DriverForm extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  // Validate returns true if the form is valid, or false otherwise.
-                  if (_formKeyDriver.currentState!.validate()) {
-                    // If the form is valid, display a snackbar. In the real world,
-                    // you'd often call a server or save the information in a database.
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Processing Data')),
+                  final form = DriverForm._formKeyDriver.currentState!;
+                  if (form.validate()) {
+                    form.save();
+                    BlocProvider.of<AuthCubit>(context).handleIncompleteSignUp(
+                      email: widget.userEntity.email,
+                      uid: widget.userEntity.uid,
+                      name: nameController.value.text,
+                      age: 0,
+                      truckNumber: truckNumberController.value.text,
+                      mobileNumber:
+                          int.parse(mobileNumberController.value.text),
+                      truckCapacity:
+                          int.parse(truckCapacityController.value.text),
+                      transporterName: transporterNameController.value.text,
+                      natureOfMaterial: "natureOfMaterial",
+                      drivingExperience:
+                          int.parse(drivingExperienceController.value.text),
+                      city: routeOneSourceController.value.text,
+                      weightOfMaterial: 0,
+                      quantity: 0,
+                      userType: "driver",
                     );
                   }
                 },
@@ -161,7 +200,7 @@ class DriverForm extends StatelessWidget {
   }
 }
 
-class SourceDestinationField extends StatelessWidget {
+class SourceDestinationField extends StatefulWidget {
   const SourceDestinationField({
     Key? key,
     required this.sourceController,
@@ -178,6 +217,14 @@ class SourceDestinationField extends StatelessWidget {
   final String destinationText;
   final StringDynamicFunc sourceOnTap;
   final StringDynamicFunc destinationOnTap;
+
+  @override
+  State<SourceDestinationField> createState() => _SourceDestinationFieldState();
+}
+
+class _SourceDestinationFieldState extends State<SourceDestinationField> {
+  @override
+
   @override
   Widget build(BuildContext context) {
     final _citiesList =
@@ -188,8 +235,9 @@ class SourceDestinationField extends StatelessWidget {
           child: SearchField(
             suggestions: _citiesList,
             textInputAction: TextInputAction.next,
-            hint: sourceText,
-            controller: sourceController,
+            hint: widget.sourceText,
+            controller: widget.sourceController,
+            suggestionAction:SuggestionAction.next ,
             searchStyle: TextStyle(
               fontSize: 18,
               color: Colors.black.withOpacity(0.8),
@@ -211,7 +259,8 @@ class SourceDestinationField extends StatelessWidget {
               ),
             ),
             itemHeight: 50,
-            onTap: sourceOnTap,
+            
+            onTap: widget.sourceOnTap,
           ),
         ),
         const SizedBox(
@@ -221,8 +270,8 @@ class SourceDestinationField extends StatelessWidget {
           child: SearchField(
             suggestions: _citiesList,
             textInputAction: TextInputAction.next,
-            hint: destinationText,
-            controller: destinationController,
+            hint: widget.destinationText,
+            controller: widget.destinationController,
             searchStyle: TextStyle(
               fontSize: 18,
               color: Colors.black.withOpacity(0.8),
@@ -233,6 +282,7 @@ class SourceDestinationField extends StatelessWidget {
               }
               return null;
             },
+            suggestionAction: SuggestionAction.next,
             searchInputDecoration: const InputDecoration(
               contentPadding: EdgeInsets.only(
                 top: 20,
@@ -244,7 +294,7 @@ class SourceDestinationField extends StatelessWidget {
               ),
             ),
             itemHeight: 50,
-            onTap: destinationOnTap,
+            onTap: widget.destinationOnTap,
           ),
         ),
       ],
