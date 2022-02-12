@@ -22,10 +22,10 @@ RouteEntity _$RouteEntityFromJson(Map<String, dynamic> json) {
 class _$RouteEntityTearOff {
   const _$RouteEntityTearOff();
 
-  _RouteEntity call({required String state, required String city}) {
+  _RouteEntity call({required String source, required String destination}) {
     return _RouteEntity(
-      state: state,
-      city: city,
+      source: source,
+      destination: destination,
     );
   }
 
@@ -39,8 +39,8 @@ const $RouteEntity = _$RouteEntityTearOff();
 
 /// @nodoc
 mixin _$RouteEntity {
-  String get state => throw _privateConstructorUsedError;
-  String get city => throw _privateConstructorUsedError;
+  String get source => throw _privateConstructorUsedError;
+  String get destination => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -53,7 +53,7 @@ abstract class $RouteEntityCopyWith<$Res> {
   factory $RouteEntityCopyWith(
           RouteEntity value, $Res Function(RouteEntity) then) =
       _$RouteEntityCopyWithImpl<$Res>;
-  $Res call({String state, String city});
+  $Res call({String source, String destination});
 }
 
 /// @nodoc
@@ -66,17 +66,17 @@ class _$RouteEntityCopyWithImpl<$Res> implements $RouteEntityCopyWith<$Res> {
 
   @override
   $Res call({
-    Object? state = freezed,
-    Object? city = freezed,
+    Object? source = freezed,
+    Object? destination = freezed,
   }) {
     return _then(_value.copyWith(
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
+      destination: destination == freezed
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -89,7 +89,7 @@ abstract class _$RouteEntityCopyWith<$Res>
           _RouteEntity value, $Res Function(_RouteEntity) then) =
       __$RouteEntityCopyWithImpl<$Res>;
   @override
-  $Res call({String state, String city});
+  $Res call({String source, String destination});
 }
 
 /// @nodoc
@@ -104,17 +104,17 @@ class __$RouteEntityCopyWithImpl<$Res> extends _$RouteEntityCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? state = freezed,
-    Object? city = freezed,
+    Object? source = freezed,
+    Object? destination = freezed,
   }) {
     return _then(_RouteEntity(
-      state: state == freezed
-          ? _value.state
-          : state // ignore: cast_nullable_to_non_nullable
+      source: source == freezed
+          ? _value.source
+          : source // ignore: cast_nullable_to_non_nullable
               as String,
-      city: city == freezed
-          ? _value.city
-          : city // ignore: cast_nullable_to_non_nullable
+      destination: destination == freezed
+          ? _value.destination
+          : destination // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -123,19 +123,19 @@ class __$RouteEntityCopyWithImpl<$Res> extends _$RouteEntityCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_RouteEntity implements _RouteEntity {
-  const _$_RouteEntity({required this.state, required this.city});
+  const _$_RouteEntity({required this.source, required this.destination});
 
   factory _$_RouteEntity.fromJson(Map<String, dynamic> json) =>
       _$$_RouteEntityFromJson(json);
 
   @override
-  final String state;
+  final String source;
   @override
-  final String city;
+  final String destination;
 
   @override
   String toString() {
-    return 'RouteEntity(state: $state, city: $city)';
+    return 'RouteEntity(source: $source, destination: $destination)';
   }
 
   @override
@@ -143,15 +143,16 @@ class _$_RouteEntity implements _RouteEntity {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _RouteEntity &&
-            const DeepCollectionEquality().equals(other.state, state) &&
-            const DeepCollectionEquality().equals(other.city, city));
+            const DeepCollectionEquality().equals(other.source, source) &&
+            const DeepCollectionEquality()
+                .equals(other.destination, destination));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(state),
-      const DeepCollectionEquality().hash(city));
+      const DeepCollectionEquality().hash(source),
+      const DeepCollectionEquality().hash(destination));
 
   @JsonKey(ignore: true)
   @override
@@ -165,16 +166,16 @@ class _$_RouteEntity implements _RouteEntity {
 }
 
 abstract class _RouteEntity implements RouteEntity {
-  const factory _RouteEntity({required String state, required String city}) =
-      _$_RouteEntity;
+  const factory _RouteEntity(
+      {required String source, required String destination}) = _$_RouteEntity;
 
   factory _RouteEntity.fromJson(Map<String, dynamic> json) =
       _$_RouteEntity.fromJson;
 
   @override
-  String get state;
+  String get source;
   @override
-  String get city;
+  String get destination;
   @override
   @JsonKey(ignore: true)
   _$RouteEntityCopyWith<_RouteEntity> get copyWith =>

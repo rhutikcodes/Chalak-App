@@ -1,5 +1,6 @@
 import 'package:chalak_app/application/cubit/auth_cubit.dart';
 import 'package:chalak_app/core/city_state.dart';
+import 'package:chalak_app/domain/auth/entity/route_entity.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:chalak_app/presentation/auth/widgets/text_field_form.dart';
 import 'package:flutter/material.dart';
@@ -188,6 +189,26 @@ class _DriverFormState extends State<DriverForm> {
                       quantity: 0,
                       userType: "driver",
                     );
+
+                    BlocProvider.of<AuthCubit>(context).saveJourneyData(
+                      [
+                        RouteEntity(
+                          source: routeOneSourceController.value.text,
+                          destination: routeOneDestinationController.value.text,
+                        ),
+                        RouteEntity(
+                          source: routeTwoSourceController.value.text,
+                          destination: routeTwoDestinationController.value.text,
+                        ),
+                        RouteEntity(
+                          source: routeThreeSourceController.value.text,
+                          destination:
+                              routeThreeDestinationController.value.text,
+                        ),
+                      ],
+                      widget.userEntity.uid,
+                      nameController.value.text,
+                    );
                   }
                 },
                 child: const Text('Submit'),
@@ -224,7 +245,6 @@ class SourceDestinationField extends StatefulWidget {
 
 class _SourceDestinationFieldState extends State<SourceDestinationField> {
   @override
-
   @override
   Widget build(BuildContext context) {
     final _citiesList =
@@ -237,7 +257,7 @@ class _SourceDestinationFieldState extends State<SourceDestinationField> {
             textInputAction: TextInputAction.next,
             hint: widget.sourceText,
             controller: widget.sourceController,
-            suggestionAction:SuggestionAction.next ,
+            suggestionAction: SuggestionAction.next,
             searchStyle: TextStyle(
               fontSize: 18,
               color: Colors.black.withOpacity(0.8),
@@ -259,7 +279,6 @@ class _SourceDestinationFieldState extends State<SourceDestinationField> {
               ),
             ),
             itemHeight: 50,
-            
             onTap: widget.sourceOnTap,
           ),
         ),

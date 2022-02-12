@@ -4,9 +4,12 @@ import 'package:bloc/bloc.dart';
 import 'package:chalak_app/core/database.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:chalak_app/domain/auth/repository/i_auth_facade.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
+
+import '../../domain/auth/entity/route_entity.dart';
 
 part 'auth_cubit.freezed.dart';
 part 'auth_state.dart';
@@ -103,6 +106,34 @@ class AuthCubit extends Cubit<AuthState> {
     }, (r) async {
       await handleAppStarted();
       Logger().i('Sign in with email successful');
+    });
+  }
+
+  Future<void> saveJourneyData(
+    List<RouteEntity> listOfRoutes,
+    String driverUid,
+    String driverName,
+  ) async {
+    print(listOfRoutes.length);
+    // ignore: avoid_function_literals_in_foreach_calls
+    listOfRoutes.forEach((route) async {
+      print('saving ${route.source}');
+      await FirebaseFirestore.instance
+          .collection('journey')
+          .doc('${route.source} - ${route.destination}')
+          .set({
+        'source': route.source,
+        'destination': route.destination,
+      });
+         print('saving ${route.source} interested dirver');
+      await FirebaseFirestore.instance
+          .collection('journey')
+          .doc('${route.source}, ${route.destination}')
+          .collection('interested_drivers')
+          .add({
+        'uid': driverUid,
+        'driverName': driverName,
+      });
     });
   }
 
