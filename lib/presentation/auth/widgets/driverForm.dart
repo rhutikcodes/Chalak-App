@@ -18,15 +18,28 @@ class DriverForm extends StatelessWidget {
         TextEditingController();
     final TextEditingController drivingExperienceController =
         TextEditingController();
-    final TextEditingController interesetedController = TextEditingController();
+    final TextEditingController routeOneSourceController =
+        TextEditingController();
+    final TextEditingController routeTwoSourceController =
+        TextEditingController();
+    final TextEditingController routeThreeSourceController =
+        TextEditingController();
+    final TextEditingController routeOneDestinationController =
+        TextEditingController();
+    final TextEditingController routeTwoDestinationController =
+        TextEditingController();
+    final TextEditingController routeThreeDestinationController =
+        TextEditingController();
     final TextEditingController searchController = TextEditingController();
+
     final _formKeyDriver = GlobalKey<FormState>();
 
-    return SingleChildScrollView(
+    return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
         key: _formKeyDriver,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TextFieldForm(
               hintText: 'Name',
@@ -91,34 +104,29 @@ class DriverForm extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: TextFieldForm(
-                    hintText: 'Source #1',
-                    textInputType: TextInputType.text,
-                    iconData: FontAwesomeIcons.route,
-                    controller: interesetedController,
-                    onTap: () {
-                      {}
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Expanded(
-                  child: TextFieldForm(
-                    hintText: 'Destination #1',
-                    textInputType: TextInputType.text,
-                    iconData: FontAwesomeIcons.route,
-                    controller: interesetedController,
-                    onTap: () {
-                      {}
-                    },
-                  ),
-                ),
-              ],
+            SourceDestinationField(
+              sourceController: routeOneSourceController,
+              destinationController: routeOneDestinationController,
+              sourceText: "Source #1",
+              destinationText: "Destination #1",
+              sourceOnTap: () {},
+              destinationOnTap: () {},
+            ),
+            SourceDestinationField(
+              sourceController: routeOneSourceController,
+              destinationController: routeOneDestinationController,
+              sourceText: "Source #2",
+              destinationText: "Destination #2",
+              sourceOnTap: () {},
+              destinationOnTap: () {},
+            ),
+            SourceDestinationField(
+              sourceController: routeOneSourceController,
+              destinationController: routeOneDestinationController,
+              sourceText: "Source #3",
+              destinationText: "Destination #3",
+              sourceOnTap: () {},
+              destinationOnTap: () {},
             ),
             const SizedBox(
               height: 24,
@@ -144,6 +152,53 @@ class DriverForm extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class SourceDestinationField extends StatelessWidget {
+  const SourceDestinationField({
+    Key? key,
+    required this.sourceController,
+    required this.destinationController,
+    required this.sourceText,
+    required this.destinationText,
+    required this.sourceOnTap,
+    required this.destinationOnTap,
+  }) : super(key: key);
+
+  final TextEditingController sourceController;
+  final TextEditingController destinationController;
+  final String sourceText;
+  final String destinationText;
+  final VoidCallback sourceOnTap;
+  final VoidCallback destinationOnTap;
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Expanded(
+          child: TextFieldForm(
+            hintText: sourceText,
+            textInputType: TextInputType.text,
+            iconData: FontAwesomeIcons.locationArrow,
+            controller: sourceController,
+            onTap: sourceOnTap,
+          ),
+        ),
+        const SizedBox(
+          width: 10,
+        ),
+        Expanded(
+          child: TextFieldForm(
+            hintText: destinationText,
+            textInputType: TextInputType.text,
+            iconData: FontAwesomeIcons.route,
+            controller: destinationController,
+            onTap: destinationOnTap,
+          ),
+        ),
+      ],
     );
   }
 }

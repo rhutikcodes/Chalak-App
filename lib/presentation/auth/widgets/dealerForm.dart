@@ -22,7 +22,7 @@ class DealerForm extends StatelessWidget {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
-        key: _formKeyDealer ,
+        key: _formKeyDealer,
         child: Column(
           children: [
             TextFieldForm(

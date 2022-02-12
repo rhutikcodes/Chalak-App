@@ -32,63 +32,66 @@ class _SignUpScreenState extends State<SignUpScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
-        children: [
-          const SizedBox(height: 50),
-          const Text(
-            'Sign up as?',
-            style: TextStyle(fontSize: 50),
-          ),
-          const SizedBox(height: 10),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Container(
-              width: MediaQuery.of(context).size.height,
-              decoration: BoxDecoration(
-                color: Palette.darkBlue,
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(5),
-                    child: TabBar(
-                      unselectedLabelColor: Colors.white,
-                      labelColor: Colors.black,
-                      indicatorColor: Colors.white,
-                      indicator: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 50),
+            const Text(
+              'Sign up as?',
+              style: TextStyle(fontSize: 50),
+            ),
+            const SizedBox(height: 10),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20),
+              child: Container(
+                width: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  color: Palette.darkBlue,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(5),
+                      child: TabBar(
+                        unselectedLabelColor: Colors.white,
+                        labelColor: Colors.black,
+                        indicatorColor: Colors.white,
+                        indicator: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        controller: tabController,
+                        tabs: [
+                          const Tab(
+                            text: 'Dealer',
+                          ),
+                          const Tab(
+                            text: 'Driver',
+                          ),
+                        ],
                       ),
-                      controller: tabController,
-                      tabs: [
-                        const Tab(
-                          text: 'Dealer',
-                        ),
-                        const Tab(
-                          text: 'Driver',
-                        ),
-                      ],
                     ),
-                  ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: TabBarView(
+                controller: tabController,
+                children: [
+                  // SignUpFormDealer(
+                  //   userEntity: widget.userEntity,
+                  //   key: UniqueKey(),
+                  // ),
+                  const DealerForm(),
+                  const DriverForm(),
                 ],
               ),
-            ),
-          ),
-          Expanded(
-            child: TabBarView(
-              controller: tabController,
-              children: [
-                // SignUpFormDealer(
-                //   userEntity: widget.userEntity,
-                //   key: UniqueKey(),
-                // ),
-                const DealerForm(),
-                const DriverForm(),
-              ],
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
