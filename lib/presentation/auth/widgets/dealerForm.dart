@@ -1,6 +1,8 @@
+import 'package:chalak_app/core/city_state.dart';
 import 'package:chalak_app/presentation/auth/widgets/text_field_form.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:searchfield/searchfield.dart';
 
 class DealerForm extends StatelessWidget {
   const DealerForm({Key? key}) : super(key: key);
@@ -18,7 +20,9 @@ class DealerForm extends StatelessWidget {
     final TextEditingController cityController = TextEditingController();
     final TextEditingController searchController = TextEditingController();
     final _formKeyDealer = GlobalKey<FormState>();
-
+    final _citiesList =
+        kCitiesList.map((city) => '${city['name']}, ${city['state']}').toList();
+        
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Form(
@@ -70,13 +74,34 @@ class DealerForm extends StatelessWidget {
             const SizedBox(
               height: 8,
             ),
-            TextFieldForm(
-              hintText: 'Select City',
-              textInputType: TextInputType.text,
-              iconData: FontAwesomeIcons.route,
+            SearchField(
+              suggestions: _citiesList,
+              textInputAction: TextInputAction.next,
+              hint: 'Select City',
               controller: cityController,
-              onTap: () {
-                {}
+              searchStyle: TextStyle(
+                fontSize: 18,
+                color: Colors.black.withOpacity(0.8),
+              ),
+              validator: (x) {
+                if (!_citiesList.contains(x) || x!.isEmpty) {
+                  return 'Please Enter a valid City';
+                }
+                return null;
+              },
+              searchInputDecoration: const InputDecoration(
+                contentPadding: EdgeInsets.only(
+                  top: 20,
+                ),
+                isDense: true,
+                prefixIcon: Padding(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Icon(FontAwesomeIcons.route),
+                ),
+              ),
+              itemHeight: 50,
+              onTap: (x) {
+                print(x);
               },
             ),
             const SizedBox(
