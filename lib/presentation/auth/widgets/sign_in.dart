@@ -1,6 +1,9 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:chalak_app/application/cubit/auth_cubit.dart';
 import 'package:chalak_app/core/palette.dart';
 import 'package:chalak_app/presentation/auth/widgets/sign_in_up_bar.dart';
+import 'package:chalak_app/presentation/auth/widgets/verify_otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'decoration_functions.dart';
@@ -18,10 +21,16 @@ class SignIn extends StatefulWidget {
   State<SignIn> createState() => _SignInState();
 }
 
-final TextEditingController emailController = TextEditingController();
-final TextEditingController passwordController = TextEditingController();
-
 class _SignInState extends State<SignIn> {
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -62,8 +71,16 @@ class _SignInState extends State<SignIn> {
                     final email = emailController.text;
                     final password = passwordController.text;
                     if (email.isNotEmpty && password.isNotEmpty) {
-                      await BlocProvider.of<AuthCubit>(context)
+                      final response = await BlocProvider.of<AuthCubit>(context)
                           .signInWithEmail(email, password);
+                      if (response.isLeft()) {
+                        //show snackbar
+                          ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('No user found $email'),
+                          ),
+                        );
+                      }
                     }
                   },
                 ),
@@ -76,6 +93,47 @@ class _SignInState extends State<SignIn> {
                     },
                     child: const Text(
                       'Sign up',
+                      style: TextStyle(
+                        fontSize: 16,
+                        decoration: TextDecoration.underline,
+                        color: Palette.darkBlue,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: InkWell(
+                    splashColor: Colors.white,
+                    onTap: () async {
+                      //send OTP
+                      if (emailController.text.isNotEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('OTP sent')),
+                        );
+                        BlocProvider.of<AuthCubit>(context)
+                            .sendOtp(emailController.text)
+                            .whenComplete(
+                              () => //navigate to verify otp screen
+                                  Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => VerifyOtpScreen(
+                                    email: emailController.text,
+                                  ),
+                                ),
+                              ),
+                            );
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Enter email')),
+                        );
+                      }
+                    },
+                    child: const Text(
+                      'Login with OTP',
                       style: TextStyle(
                         fontSize: 16,
                         decoration: TextDecoration.underline,

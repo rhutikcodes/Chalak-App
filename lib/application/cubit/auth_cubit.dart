@@ -5,10 +5,13 @@ import 'package:chalak_app/core/database.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:chalak_app/domain/auth/repository/i_auth_facade.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dartz/dartz.dart';
+import 'package:email_auth/email_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 
+import '../../domain/auth/entity/auth_failure.dart';
 import '../../domain/auth/entity/route_entity.dart';
 
 part 'auth_cubit.freezed.dart';
@@ -49,6 +52,21 @@ class AuthCubit extends Cubit<AuthState> {
       Logger().i('User not signed in socket exception ${e.message}');
       emit(const AuthState.unauthenticated());
     }
+  }
+
+  Future<void> sendOtp(String email) async {
+    final EmailAuth emailAuth = EmailAuth(sessionName: "Chalak App");
+    await emailAuth.sendOtp(
+      recipientMail: email,
+      otpLength: 4,
+    );
+  }
+
+  Future<bool> validateOtp(String email, String otp) async {
+    final EmailAuth emailAuth = EmailAuth(sessionName: "Chalak App");
+    final bool response =
+        emailAuth.validateOtp(recipientMail: email, userOtp: otp);
+    return response;
   }
 
   Future<void> logOut() async {
@@ -98,14 +116,19 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthState.authenticated(userEntity: userEntity));
   }
 
-  Future<void> signInWithEmail(String email, String password) async {
+  Future<Either<AuthFailure, Unit>> signInWithEmail(
+    String email,
+    String password,
+  ) async {
     final failureOrSuccess = await _authFacade.signInWithEmail(email, password);
-    failureOrSuccess.fold((l) async {
+    return failureOrSuccess.fold((l) async {
       Logger().i('Sign in with email failed');
       emit(const AuthState.unauthenticated());
+      return left(const AuthFailure.serverError());
     }, (r) async {
       await handleAppStarted();
       Logger().i('Sign in with email successful');
+      return right(r);
     });
   }
 
@@ -125,7 +148,7 @@ class AuthCubit extends Cubit<AuthState> {
         'source': route.source,
         'destination': route.destination,
       });
-         print('saving ${route.source} interested dirver');
+      print('saving ${route.source} interested dirver');
       await FirebaseFirestore.instance
           .collection('journey')
           .doc('${route.source}, ${route.destination}')

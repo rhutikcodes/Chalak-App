@@ -97,6 +97,7 @@ class _DealerFormState extends State<DealerForm> {
               suggestions: _citiesList,
               textInputAction: TextInputAction.next,
               hint: 'Select City',
+              suggestionAction: SuggestionAction.next,
               controller: cityController,
               searchStyle: TextStyle(
                 fontSize: 18,
@@ -133,8 +134,9 @@ class _DealerFormState extends State<DealerForm> {
                 ),
               ),
               onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (DealerForm._formKeyDealer.currentState!.validate()) {
+                final form = DealerForm._formKeyDealer.currentState!;
+                if (form.validate()) {
+                  form.save();
                   BlocProvider.of<AuthCubit>(context).handleIncompleteSignUp(
                     email: widget.userEntity.email,
                     uid: widget.userEntity.uid,
