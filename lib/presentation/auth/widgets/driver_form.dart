@@ -257,9 +257,9 @@ class _SourceDestinationFieldState extends State<SourceDestinationField> {
             textInputAction: TextInputAction.next,
             hint: widget.sourceText,
             controller: widget.sourceController,
-            suggestionAction: SuggestionAction.next,
+            suggestionAction: SuggestionAction.unfocus,
             searchStyle: TextStyle(
-              fontSize: 18,
+              fontSize: 14,
               color: Colors.black.withOpacity(0.8),
             ),
             validator: (x) {
@@ -289,10 +289,11 @@ class _SourceDestinationFieldState extends State<SourceDestinationField> {
           child: SearchField(
             suggestions: _citiesList,
             textInputAction: TextInputAction.next,
+            
             hint: widget.destinationText,
             controller: widget.destinationController,
             searchStyle: TextStyle(
-              fontSize: 18,
+              fontSize: 14,
               color: Colors.black.withOpacity(0.8),
             ),
             validator: (x) {
@@ -301,7 +302,7 @@ class _SourceDestinationFieldState extends State<SourceDestinationField> {
               }
               return null;
             },
-            suggestionAction: SuggestionAction.next,
+            suggestionAction: SuggestionAction.unfocus,
             searchInputDecoration: const InputDecoration(
               contentPadding: EdgeInsets.only(
                 top: 20,

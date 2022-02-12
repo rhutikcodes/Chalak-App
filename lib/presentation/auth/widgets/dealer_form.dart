@@ -97,10 +97,10 @@ class _DealerFormState extends State<DealerForm> {
               suggestions: _citiesList,
               textInputAction: TextInputAction.next,
               hint: 'Select City',
-              suggestionAction: SuggestionAction.next,
+              suggestionAction: SuggestionAction.unfocus,
               controller: cityController,
               searchStyle: TextStyle(
-                fontSize: 18,
+                fontSize: 14,
                 color: Colors.black.withOpacity(0.8),
               ),
               validator: (x) {
