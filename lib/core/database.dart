@@ -9,6 +9,7 @@ class Database {
     required String? email,
     required String? name,
     required String? uid,
+    required String? password,
   }) async {
     String returnVal = "error";
 
@@ -18,6 +19,7 @@ class Database {
           "email": email,
           "uid": uid,
           "name": name ?? "name",
+          "password": password,
           "age": 0,
           "truckNumber": "truckNumber",
           "mobileNumber": 0,
@@ -62,7 +64,6 @@ class Database {
     required double? weightOfMaterial,
     required int? quantity,
     required String? city,
-    required String? state,
     required String userType,
   }) async {
     
@@ -80,7 +81,6 @@ class Database {
         "natureOfMaterial": natureOfMaterial,
         "weightOfMaterial": weightOfMaterial,
         "quantity": quantity,
-        "state": state,
         "userType": userType,
       },
       SetOptions(merge: true),

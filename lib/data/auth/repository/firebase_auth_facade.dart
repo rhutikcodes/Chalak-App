@@ -33,7 +33,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         await Database().createFirebaseUser(
           email: email,
           name: displayName,
-          uid: user.uid,
+          uid: user.uid, password: mPassword,
         );
       }
       return right(unit);
@@ -62,7 +62,7 @@ class FirebaseAuthFacade implements IAuthFacade {
         await Database().createFirebaseUser(
           email: email,
           name: displayName,
-          uid: user.uid,
+          uid: user.uid, password:mPassword,
         );
       }
       return right(unit);

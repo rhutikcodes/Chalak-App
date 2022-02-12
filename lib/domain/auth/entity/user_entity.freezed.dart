@@ -36,7 +36,9 @@ class _$UserEntityTearOff {
       required String city,
       required String state,
       required String userType,
-      required String uid}) {
+      required String uid,
+      required String email,
+      required String password}) {
     return _UserEntity(
       name: name,
       age: age,
@@ -52,6 +54,8 @@ class _$UserEntityTearOff {
       state: state,
       userType: userType,
       uid: uid,
+      email: email,
+      password: password,
     );
   }
 
@@ -79,6 +83,8 @@ mixin _$UserEntity {
   String get state => throw _privateConstructorUsedError;
   String get userType => throw _privateConstructorUsedError;
   String get uid => throw _privateConstructorUsedError;
+  String get email => throw _privateConstructorUsedError;
+  String get password => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -105,7 +111,9 @@ abstract class $UserEntityCopyWith<$Res> {
       String city,
       String state,
       String userType,
-      String uid});
+      String uid,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -132,6 +140,8 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
     Object? state = freezed,
     Object? userType = freezed,
     Object? uid = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -190,6 +200,14 @@ class _$UserEntityCopyWithImpl<$Res> implements $UserEntityCopyWith<$Res> {
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -214,7 +232,9 @@ abstract class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
       String city,
       String state,
       String userType,
-      String uid});
+      String uid,
+      String email,
+      String password});
 }
 
 /// @nodoc
@@ -243,6 +263,8 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
     Object? state = freezed,
     Object? userType = freezed,
     Object? uid = freezed,
+    Object? email = freezed,
+    Object? password = freezed,
   }) {
     return _then(_UserEntity(
       name: name == freezed
@@ -301,6 +323,14 @@ class __$UserEntityCopyWithImpl<$Res> extends _$UserEntityCopyWithImpl<$Res>
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
               as String,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String,
+      password: password == freezed
+          ? _value.password
+          : password // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -322,7 +352,9 @@ class _$_UserEntity implements _UserEntity {
       required this.city,
       required this.state,
       required this.userType,
-      required this.uid});
+      required this.uid,
+      required this.email,
+      required this.password});
 
   factory _$_UserEntity.fromJson(Map<String, dynamic> json) =>
       _$$_UserEntityFromJson(json);
@@ -355,10 +387,14 @@ class _$_UserEntity implements _UserEntity {
   final String userType;
   @override
   final String uid;
+  @override
+  final String email;
+  @override
+  final String password;
 
   @override
   String toString() {
-    return 'UserEntity(name: $name, age: $age, truckNumber: $truckNumber, mobileNumber: $mobileNumber, truckCapacity: $truckCapacity, transporterName: $transporterName, drivingExperience: $drivingExperience, natureOfMaterial: $natureOfMaterial, weightOfMaterial: $weightOfMaterial, quantity: $quantity, city: $city, state: $state, userType: $userType, uid: $uid)';
+    return 'UserEntity(name: $name, age: $age, truckNumber: $truckNumber, mobileNumber: $mobileNumber, truckCapacity: $truckCapacity, transporterName: $transporterName, drivingExperience: $drivingExperience, natureOfMaterial: $natureOfMaterial, weightOfMaterial: $weightOfMaterial, quantity: $quantity, city: $city, state: $state, userType: $userType, uid: $uid, email: $email, password: $password)';
   }
 
   @override
@@ -386,7 +422,9 @@ class _$_UserEntity implements _UserEntity {
             const DeepCollectionEquality().equals(other.city, city) &&
             const DeepCollectionEquality().equals(other.state, state) &&
             const DeepCollectionEquality().equals(other.userType, userType) &&
-            const DeepCollectionEquality().equals(other.uid, uid));
+            const DeepCollectionEquality().equals(other.uid, uid) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality().equals(other.password, password));
   }
 
   @override
@@ -405,7 +443,9 @@ class _$_UserEntity implements _UserEntity {
       const DeepCollectionEquality().hash(city),
       const DeepCollectionEquality().hash(state),
       const DeepCollectionEquality().hash(userType),
-      const DeepCollectionEquality().hash(uid));
+      const DeepCollectionEquality().hash(uid),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(password));
 
   @JsonKey(ignore: true)
   @override
@@ -433,7 +473,9 @@ abstract class _UserEntity implements UserEntity {
       required String city,
       required String state,
       required String userType,
-      required String uid}) = _$_UserEntity;
+      required String uid,
+      required String email,
+      required String password}) = _$_UserEntity;
 
   factory _UserEntity.fromJson(Map<String, dynamic> json) =
       _$_UserEntity.fromJson;
@@ -466,6 +508,10 @@ abstract class _UserEntity implements UserEntity {
   String get userType;
   @override
   String get uid;
+  @override
+  String get email;
+  @override
+  String get password;
   @override
   @JsonKey(ignore: true)
   _$UserEntityCopyWith<_UserEntity> get copyWith =>

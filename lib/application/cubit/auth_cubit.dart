@@ -73,7 +73,6 @@ class AuthCubit extends Cubit<AuthState> {
     required double? weightOfMaterial,
     required int? quantity,
     required String? city,
-    required String? state,
     required String userType,
   }) async {
     final UserEntity userEntity = await Database().saveIncompletSignUp(
@@ -89,7 +88,6 @@ class AuthCubit extends Cubit<AuthState> {
       natureOfMaterial: natureOfMaterial,
       weightOfMaterial: weightOfMaterial,
       quantity: quantity,
-      state: state,
       userType: userType,
       uid: uid,
     );
