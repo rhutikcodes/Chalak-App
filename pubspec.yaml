@@ -28,10 +28,12 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   animations: ^2.0.2
+  cloud_firestore: ^3.1.8
   cupertino_icons: ^1.0.4
   dartz: ^0.10.1
+  drop_down_list: ^0.0.2
+  email_auth: ^1.0.0
   equatable: ^2.0.3
-  firebase: ^9.0.2
   firebase_auth: ^3.3.7
   firebase_core: ^1.12.0
   flutter:
@@ -41,16 +43,19 @@ dependencies:
   freezed_annotation: ^1.1.0
   injectable: ^1.5.3
   json_annotation: ^4.4.0
+  logger: ^1.1.0
+  searchfield: ^0.5.6
 
 dev_dependencies:
   build_runner: ^2.1.7
-  flutter_launcher_icons: '^0.9.2'
+  flutter_launcher_icons: ^0.9.2
   flutter_lints: ^1.0.4
   flutter_test:
     sdk: flutter
   freezed: ^1.1.1
   injectable_generator: ^1.5.3
   json_serializable: ^6.1.4
+  lint: ^1.8.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
