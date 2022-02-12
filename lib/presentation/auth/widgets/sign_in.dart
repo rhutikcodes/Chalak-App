@@ -29,6 +29,16 @@ class _SignInState extends State<SignIn> {
     super.dispose();
   }
 
+  // Initially password is obscure
+  bool _obscureText = true;
+
+  // Toggles the password show status
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   @override
@@ -60,8 +70,19 @@ class _SignInState extends State<SignIn> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   child: TextField(
-                    decoration: signInInputDecoration(hintText: 'Password'),
+                    decoration:
+                        signInInputDecoration(hintText: 'Password').copyWith(
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                        ),
+                        onPressed: _toggle,
+                      ),
+                    ),
                     controller: passwordController,
+                    obscureText: _obscureText,
                   ),
                 ),
                 SignInBar(
@@ -75,7 +96,7 @@ class _SignInState extends State<SignIn> {
                           .signInWithEmail(email, password);
                       if (response.isLeft()) {
                         //show snackbar
-                          ScaffoldMessenger.of(context).showSnackBar(
+                        ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text('No user found $email'),
                           ),
