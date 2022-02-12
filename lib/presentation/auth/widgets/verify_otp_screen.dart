@@ -136,6 +136,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () async {
+                          FocusScope.of(context).unfocus();
                           final optValue = digitOneController.text +
                               digitTwoController.text +
                               digitThreeController.text +
@@ -236,14 +237,27 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               const SizedBox(
                 height: 18,
               ),
-              const Text(
-                "Resend New Code",
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Palette.darkBlue,
+              InkWell(
+                splashColor: Colors.white,
+                onTap: () async {
+                  FocusScope.of(context).unfocus();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text('OTP resent'),
+                    ),
+                  );
+                  await BlocProvider.of<AuthCubit>(context)
+                      .sendOtp(widget.email);
+                },
+                child: const Text(
+                  "Resend New Code",
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Palette.darkBlue,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                textAlign: TextAlign.center,
               ),
             ],
           ),
