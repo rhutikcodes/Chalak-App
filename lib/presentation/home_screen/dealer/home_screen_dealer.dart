@@ -2,7 +2,7 @@ import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/cubit/auth_cubit.dart';
+import '../../../application/cubit/auth_cubit.dart';
 
 class HomeScreenDealer extends StatelessWidget {
   const HomeScreenDealer({Key? key, required this.userEntity}) : super(key: key);

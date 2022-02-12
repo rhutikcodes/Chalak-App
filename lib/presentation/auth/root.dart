@@ -1,7 +1,7 @@
 import 'package:chalak_app/application/cubit/auth_cubit.dart';
 import 'package:chalak_app/presentation/auth/sign_up_screen.dart';
-import 'package:chalak_app/presentation/home_screen/home_screen_dealer.dart';
-import 'package:chalak_app/presentation/home_screen/home_screen_driver.dart';
+import 'package:chalak_app/presentation/home_screen/dealer/home_screen_dealer.dart';
+import 'package:chalak_app/presentation/home_screen/driver/home_screen_driver.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
