@@ -1,12 +1,12 @@
 import 'package:chalak_app/application/cubit/availabledrivers_cubit.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
-import 'package:chalak_app/injection.dart';
 import 'package:chalak_app/presentation/auth/widgets/driver_form.dart';
 import 'package:chalak_app/presentation/home_screen/app_bar_custom.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giff_dialog/giff_dialog.dart';
 import 'package:logger/logger.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../domain/home/entity/available_driver_entity.dart';
 
@@ -91,7 +91,6 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
               const SizedBox(
                 height: 20,
               ),
-
               FutureBuilder(
                 future: BlocProvider.of<AvailabledriversCubit>(context)
                     .getAvailableDrivers(widget.userEntity.city),
@@ -100,8 +99,10 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                   AsyncSnapshot<List<AvailableDriverEntity>> snapshot,
                 ) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(
-                      child: Text('Loading'),
+                   return Center(
+                      child: Lottie.asset(
+                        'assets/animations/truck_loading.json',
+                      ),
                     );
                   } else {
                     if (snapshot.hasData) {
@@ -113,7 +114,6 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                             shrinkWrap: true,
                             itemCount: data.length,
                             itemBuilder: (BuildContext context, int index) {
-                              Logger().d(data);
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: DriverCard(
@@ -153,26 +153,29 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                             },
                           );
                         } else {
-                          return const Text('No data');
+                          return Center(
+                            child: Lottie.asset(
+                              'assets/animations/truck_loading.json',
+                            ),
+                          );
                         }
                       } else {
-                        return const Text('No data');
+                         return Center(
+                          child: Lottie.asset(
+                            'assets/animations/truck_loading.json',
+                          ),
+                        );
                       }
                     } else {
-                      return const Text('No data');
+                       return Center(
+                        child: Lottie.asset(
+                          'assets/animations/truck_loading.json',
+                        ),
+                      );
                     }
                   }
                 },
               ),
-              // BlocBuilder<AvailabledriversCubit, AvailabledriversState>(
-              //   builder: (context, state) {
-              //     return state.maybeMap(
-              //       loaded: (),
-              //       orElse: () {
-              //       return Text('No driver');
-              //     });
-              //   },
-              // )
             ],
           ),
         ),

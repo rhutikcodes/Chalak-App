@@ -11,7 +11,7 @@ class AvailableDriversRepositoryImpl implements IAvailableDriversRepository {
     final List<AvailableDriverEntity> availableDrivers = [];
     availableDrivers.addAll(await fetchInterestedDrivers(city, 'source'));
     availableDrivers.addAll(await fetchInterestedDrivers(city, 'destination'));
-    Logger().e(availableDrivers.toString());
+    Logger().d(availableDrivers.toString());
     return availableDrivers;
   }
 
