@@ -1,7 +1,9 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'package:chalak_app/application/cubit/availabledrivers_cubit.dart';
+import 'package:chalak_app/application/cubit/orders_cubit.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
+import 'package:chalak_app/domain/home/entity/order_entity.dart';
 import 'package:chalak_app/presentation/auth/widgets/driver_form.dart';
 import 'package:chalak_app/presentation/home_screen/app_bar_custom.dart';
 import 'package:chalak_app/presentation/home_screen/dealer/available_drivers_screen.dart';
@@ -88,6 +90,7 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                         MaterialPageRoute(
                           builder: (context) => AvailableDriversScreen(
                             availableDriversList: drivers,
+                            userEntity: widget.userEntity,
                           ),
                         ),
                       );
@@ -134,7 +137,18 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                                 child: DriverCard(
                                   destination: data[index].destination,
                                   name: data[index].driverName,
-                                  onPress: () {
+                                  onPress: () async {
+                                    await BlocProvider.of<OrdersCubit>(context)
+                                        .addOrder(
+                                      OrderEntity(
+                                        driverUid: data[index].driverUid,
+                                        dealerUid: widget.userEntity.uid,
+                                        name: data[index].driverName,
+                                        source: data[index].source,
+                                        destination: data[index].destination,
+                                        status: 'open',
+                                      ),
+                                    );
                                     showDialog(
                                       context: context,
                                       builder: (_) => AssetGiffDialog(

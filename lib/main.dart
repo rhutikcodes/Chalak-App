@@ -1,4 +1,5 @@
 import 'package:chalak_app/application/cubit/auth_cubit.dart';
+import 'package:chalak_app/application/cubit/orders_cubit.dart';
 import 'package:chalak_app/presentation/auth/root.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -20,8 +21,17 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => getIt<AuthCubit>()..handleAppStarted(),
+    return MultiBlocProvider(
+     
+      providers: [
+        BlocProvider<AuthCubit>(
+          create: (_) => getIt<AuthCubit>()..handleAppStarted(),
+        ),
+        BlocProvider<OrdersCubit>(
+          create: (_) => OrdersCubit(),
+        ),
+        
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Material App',
