@@ -1,4 +1,5 @@
 import 'package:chalak_app/application/cubit/auth_cubit.dart';
+import 'package:chalak_app/application/cubit/availabledrivers_cubit.dart';
 import 'package:chalak_app/presentation/auth/sign_up_screen.dart';
 import 'package:chalak_app/presentation/home_screen/dealer/home_screen_dealer.dart';
 import 'package:chalak_app/presentation/home_screen/driver/home_screen_driver.dart';
@@ -24,19 +25,25 @@ class Root extends StatelessWidget {
           },
           authenticated: (userEntity) {
             Logger().i(state);
-            return Builder(
-              builder: (context) {
-                if (userEntity.userType=='dealer') {
-                   return HomeScreenDealer(
-                    userEntity: userEntity,
-                  );
-                }else{
-                  return HomeScreenDriver(
-                    userEntity: userEntity,
-                  );
-                }
-               
-              },
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider<AvailabledriversCubit>(
+                  create: (_) => AvailabledriversCubit(),
+                ),
+              ],
+              child: Builder(
+                builder: (context) {
+                  if (userEntity.userType == 'dealer') {
+                    return HomeScreenDealer(
+                      userEntity: userEntity,
+                    );
+                  } else {
+                    return HomeScreenDriver(
+                      userEntity: userEntity,
+                    );
+                  }
+                },
+              ),
             );
           },
           unauthenticated: () {

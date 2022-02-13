@@ -1,8 +1,14 @@
+import 'package:chalak_app/application/cubit/availabledrivers_cubit.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
+import 'package:chalak_app/injection.dart';
 import 'package:chalak_app/presentation/auth/widgets/driver_form.dart';
 import 'package:chalak_app/presentation/home_screen/app_bar_custom.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giff_dialog/giff_dialog.dart';
+import 'package:logger/logger.dart';
+
+import '../../../domain/home/entity/available_driver_entity.dart';
 
 class HomeScreenDealer extends StatefulWidget {
   const HomeScreenDealer({Key? key, required this.userEntity})
@@ -32,7 +38,6 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
           padding: const EdgeInsets.only(left: 18, right: 18, top: 18),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,37 +91,88 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
               const SizedBox(
                 height: 20,
               ),
-              DriverCard(
-                destination: 'Banglore',
-                name: 'Rhutik',
-                onPress: () {
-                  showDialog(
-                    context: context,
-                    builder: (_) => AssetGiffDialog(
-                      title: const Text(
-                        "Order Success",
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 24.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      description: const Text(
-                        "Thank you for using Chalak!!",
-                        style: TextStyle(
-                          fontSize: 20.0,
-                        ),
-                      ),
-                      entryAnimation: EntryAnimation.topRight,
-                      onOkButtonPressed: () {
-                        Navigator.pop(context);
-                      },
-                      image: Image.asset("assets/images/order_success.gif"),
-                    ),
-                  );
+
+              FutureBuilder(
+                future: BlocProvider.of<AvailabledriversCubit>(context)
+                    .getAvailableDrivers(widget.userEntity.city),
+                builder: (
+                  BuildContext context,
+                  AsyncSnapshot<List<AvailableDriverEntity>> snapshot,
+                ) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(
+                      child: Text('Loading'),
+                    );
+                  } else {
+                    if (snapshot.hasData) {
+                      final data = snapshot.data;
+                      if (data != null) {
+                        if (data.isNotEmpty) {
+                          return ListView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            itemCount: data.length,
+                            itemBuilder: (BuildContext context, int index) {
+                              Logger().d(data);
+                              return Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: DriverCard(
+                                  destination: data[index].destination,
+                                  name: data[index].driverName,
+                                  onPress: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (_) => AssetGiffDialog(
+                                        title: const Text(
+                                          "Order Success",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 24.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        description: const Text(
+                                          "Thank you for using Chalak!!",
+                                          style: TextStyle(
+                                            fontSize: 20.0,
+                                          ),
+                                        ),
+                                        entryAnimation: EntryAnimation.topRight,
+                                        onOkButtonPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        image: Image.asset(
+                                          "assets/images/order_success.gif",
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                  source: data[index].source,
+                                ),
+                              );
+                            },
+                          );
+                        } else {
+                          return const Text('No data');
+                        }
+                      } else {
+                        return const Text('No data');
+                      }
+                    } else {
+                      return const Text('No data');
+                    }
+                  }
                 },
-                source: 'Mumbai',
               ),
+              // BlocBuilder<AvailabledriversCubit, AvailabledriversState>(
+              //   builder: (context, state) {
+              //     return state.maybeMap(
+              //       loaded: (),
+              //       orElse: () {
+              //       return Text('No driver');
+              //     });
+              //   },
+              // )
             ],
           ),
         ),
