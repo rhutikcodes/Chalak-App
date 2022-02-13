@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../application/cubit/auth_cubit.dart';
-import '../../domain/auth/entity/user_entity.dart';
+import '../../../application/cubit/auth_cubit.dart';
+import '../../../domain/auth/entity/user_entity.dart';
 
 class HomeScreenDriver extends StatelessWidget {
   const HomeScreenDriver({ Key? key, required this.userEntity }) : super(key: key);
