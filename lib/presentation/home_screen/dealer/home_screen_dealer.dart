@@ -1,7 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:chalak_app/application/cubit/availabledrivers_cubit.dart';
 import 'package:chalak_app/domain/auth/entity/user_entity.dart';
 import 'package:chalak_app/presentation/auth/widgets/driver_form.dart';
 import 'package:chalak_app/presentation/home_screen/app_bar_custom.dart';
+import 'package:chalak_app/presentation/home_screen/dealer/available_drivers_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giff_dialog/giff_dialog.dart';
@@ -65,20 +68,32 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                 child: ElevatedButton(
                   onPressed: () async {
                     //search Dealers
-                    toogleLoading();
+                    final drivers =
+                        await BlocProvider.of<AvailabledriversCubit>(context)
+                            .getAvailableDriversFromRoute(
+                      routeOneSourceController.text,
+                      routeOneDestinationController.text,
+                    );
+                    Logger().e(drivers);
+                    if (drivers.isEmpty) {
+                      //show snackbar
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('No drivers found for this route'),
+                        ),
+                      );
+                    } else {
+                      //push to new screen
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AvailableDriversScreen(
+                            availableDriversList: drivers,
+                          ),
+                        ),
+                      );
+                    }
                   },
-                  child: isLoading
-                      ? Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const CircularProgressIndicator(
-                              color: Colors.white,
-                            ),
-                            const SizedBox(width: 24),
-                            const Text('Loading....')
-                          ],
-                        )
-                      : const Text("Search"),
+                  child: const Text("Search"),
                 ),
               ),
               const SizedBox(
@@ -99,7 +114,7 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                   AsyncSnapshot<List<AvailableDriverEntity>> snapshot,
                 ) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                   return Center(
+                    return Center(
                       child: Lottie.asset(
                         'assets/animations/truck_loading.json',
                       ),
@@ -160,14 +175,14 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                           );
                         }
                       } else {
-                         return Center(
+                        return Center(
                           child: Lottie.asset(
                             'assets/animations/truck_loading.json',
                           ),
                         );
                       }
                     } else {
-                       return Center(
+                      return Center(
                         child: Lottie.asset(
                           'assets/animations/truck_loading.json',
                         ),
@@ -181,12 +196,6 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
         ),
       ),
     );
-  }
-
-  void toogleLoading() {
-    return setState(() {
-      isLoading = !isLoading;
-    });
   }
 }
 
