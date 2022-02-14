@@ -80,7 +80,7 @@ class _DriverFormState extends State<DriverForm> {
                 height: 8,
               ),
               TextFieldForm(
-                hintText: 'Age',
+                hintText: 'Age(YR)',
                 textInputType: TextInputType.number,
                 iconData: FontAwesomeIcons.child,
                 controller: ageController,
@@ -107,7 +107,7 @@ class _DriverFormState extends State<DriverForm> {
                 height: 8,
               ),
               TextFieldForm(
-                hintText: 'Truck Capacity',
+                hintText: 'Truck Capacity(KG)',
                 textInputType: TextInputType.number,
                 iconData: FontAwesomeIcons.balanceScale,
                 controller: truckCapacityController,
