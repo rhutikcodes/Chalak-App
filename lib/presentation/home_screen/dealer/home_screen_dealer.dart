@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giff_dialog/giff_dialog.dart';
 import 'package:logger/logger.dart';
 import 'package:lottie/lottie.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../domain/home/entity/available_driver_entity.dart';
 
@@ -146,7 +147,7 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                                         name: data[index].driverName,
                                         source: data[index].source,
                                         destination: data[index].destination,
-                                        status: 'open',
+                                        status: 'open', orderId: const Uuid().v1(),
                                       ),
                                     );
                                     showDialog(

@@ -12,6 +12,7 @@ class OrderEntity with _$OrderEntity {
     required String source,
     required String destination,
     required String status,
+    required String orderId,
   }) = _OrderEntity;
   factory OrderEntity.fromJson(Map<String, dynamic> json) =>
       _$OrderEntityFromJson(json);

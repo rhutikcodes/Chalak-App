@@ -14,6 +14,7 @@ _$_OrderEntity _$$_OrderEntityFromJson(Map<String, dynamic> json) =>
       source: json['source'] as String,
       destination: json['destination'] as String,
       status: json['status'] as String,
+      orderId: json['orderId'] as String,
     );
 
 Map<String, dynamic> _$$_OrderEntityToJson(_$_OrderEntity instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$_OrderEntityToJson(_$_OrderEntity instance) =>
       'source': instance.source,
       'destination': instance.destination,
       'status': instance.status,
+      'orderId': instance.orderId,
     };

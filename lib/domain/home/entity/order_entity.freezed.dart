@@ -28,7 +28,8 @@ class _$OrderEntityTearOff {
       required String name,
       required String source,
       required String destination,
-      required String status}) {
+      required String status,
+      required String orderId}) {
     return _OrderEntity(
       driverUid: driverUid,
       dealerUid: dealerUid,
@@ -36,6 +37,7 @@ class _$OrderEntityTearOff {
       source: source,
       destination: destination,
       status: status,
+      orderId: orderId,
     );
   }
 
@@ -55,6 +57,7 @@ mixin _$OrderEntity {
   String get source => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get orderId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -73,7 +76,8 @@ abstract class $OrderEntityCopyWith<$Res> {
       String name,
       String source,
       String destination,
-      String status});
+      String status,
+      String orderId});
 }
 
 /// @nodoc
@@ -92,6 +96,7 @@ class _$OrderEntityCopyWithImpl<$Res> implements $OrderEntityCopyWith<$Res> {
     Object? source = freezed,
     Object? destination = freezed,
     Object? status = freezed,
+    Object? orderId = freezed,
   }) {
     return _then(_value.copyWith(
       driverUid: driverUid == freezed
@@ -118,6 +123,10 @@ class _$OrderEntityCopyWithImpl<$Res> implements $OrderEntityCopyWith<$Res> {
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      orderId: orderId == freezed
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -135,7 +144,8 @@ abstract class _$OrderEntityCopyWith<$Res>
       String name,
       String source,
       String destination,
-      String status});
+      String status,
+      String orderId});
 }
 
 /// @nodoc
@@ -156,6 +166,7 @@ class __$OrderEntityCopyWithImpl<$Res> extends _$OrderEntityCopyWithImpl<$Res>
     Object? source = freezed,
     Object? destination = freezed,
     Object? status = freezed,
+    Object? orderId = freezed,
   }) {
     return _then(_OrderEntity(
       driverUid: driverUid == freezed
@@ -182,6 +193,10 @@ class __$OrderEntityCopyWithImpl<$Res> extends _$OrderEntityCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      orderId: orderId == freezed
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -195,7 +210,8 @@ class _$_OrderEntity implements _OrderEntity {
       required this.name,
       required this.source,
       required this.destination,
-      required this.status});
+      required this.status,
+      required this.orderId});
 
   factory _$_OrderEntity.fromJson(Map<String, dynamic> json) =>
       _$$_OrderEntityFromJson(json);
@@ -212,10 +228,12 @@ class _$_OrderEntity implements _OrderEntity {
   final String destination;
   @override
   final String status;
+  @override
+  final String orderId;
 
   @override
   String toString() {
-    return 'OrderEntity(driverUid: $driverUid, dealerUid: $dealerUid, name: $name, source: $source, destination: $destination, status: $status)';
+    return 'OrderEntity(driverUid: $driverUid, dealerUid: $dealerUid, name: $name, source: $source, destination: $destination, status: $status, orderId: $orderId)';
   }
 
   @override
@@ -229,7 +247,8 @@ class _$_OrderEntity implements _OrderEntity {
             const DeepCollectionEquality().equals(other.source, source) &&
             const DeepCollectionEquality()
                 .equals(other.destination, destination) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.orderId, orderId));
   }
 
   @override
@@ -240,7 +259,8 @@ class _$_OrderEntity implements _OrderEntity {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(source),
       const DeepCollectionEquality().hash(destination),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(orderId));
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +280,8 @@ abstract class _OrderEntity implements OrderEntity {
       required String name,
       required String source,
       required String destination,
-      required String status}) = _$_OrderEntity;
+      required String status,
+      required String orderId}) = _$_OrderEntity;
 
   factory _OrderEntity.fromJson(Map<String, dynamic> json) =
       _$_OrderEntity.fromJson;
@@ -277,6 +298,8 @@ abstract class _OrderEntity implements OrderEntity {
   String get destination;
   @override
   String get status;
+  @override
+  String get orderId;
   @override
   @JsonKey(ignore: true)
   _$OrderEntityCopyWith<_OrderEntity> get copyWith =>
