@@ -12,10 +12,43 @@ class OrderRepositoryImp implements IOrderRepository {
         .doc(orderEntity.dealerUid)
         .collection('booked_orders')
         .add(orderEntity.toJson());
-       await FirebaseFirestore.instance
+    await FirebaseFirestore.instance
         .collection("users")
         .doc(orderEntity.driverUid)
         .collection('bookings')
         .add(orderEntity.toJson());
+  }
+
+  @override
+  Future<List<OrderEntity>> getBookings(String driverUid) async {
+    final List<OrderEntity> orderEnityList = [];
+    final bookingsSnapshot = await FirebaseFirestore.instance
+        .collection("users")
+        .doc(driverUid)
+        .collection('bookings')
+        .get();
+    if (bookingsSnapshot.size > 0) {
+      for (final booking in bookingsSnapshot.docs) {
+        final String driverUid = booking.data()['driverUid'];
+        final String dealerUid = booking.data()['dealerUid'];
+        final String driverName = booking.data()['driverName'];
+        final String dealerName = booking.data()['driverName'];
+        final String orderId = booking.data()['orderId'];
+        final String source = booking.data()['source'];
+        final String destination = booking.data()['destination'];
+        final String status = booking.data()['status'];
+        orderEnityList.add(
+          OrderEntity(
+            driverUid: driverUid,
+            dealerUid: dealerUid,
+            source: source,
+            destination: destination,
+            status: status,
+            orderId: orderId, dealerName: dealerName, driverName: driverName,
+          ),
+        );
+      }
+    }
+    return orderEnityList;
   }
 }
