@@ -60,6 +60,13 @@ dev_dependencies:
   json_serializable: ^6.1.4
   lint: ^1.8.2
 
+flutter_icons:
+  ios: true
+  android: true
+  image_path: 'assets/icons/truck.png'
+  adaptive_icon_background: '#489FB5'
+  adaptive_icon_foreground: 'assets/icons/truck.png'
+
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
@@ -73,6 +80,7 @@ flutter:
     - assets/images/order_success.gif
     - assets/animations/truck_loading.json
     - assets/images/thank_you.gif
+    - assets/icons/truck.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
