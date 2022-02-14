@@ -8,7 +8,8 @@ class OrderEntity with _$OrderEntity {
   const factory OrderEntity({
     required String driverUid,
     required String dealerUid,
-    required String name,
+    required String driverName,
+    required String dealerName,
     required String source,
     required String destination,
     required String status,
