@@ -72,6 +72,7 @@ flutter:
   assets:
     - assets/images/order_success.gif
     - assets/animations/truck_loading.json
+    - assets/images/thank_you.gif
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
   # For details regarding adding assets from package dependencies, see
