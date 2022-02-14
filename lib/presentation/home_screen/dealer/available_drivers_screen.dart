@@ -34,10 +34,10 @@ class AvailableDriversScreen extends StatelessWidget {
                   OrderEntity(
                     driverUid: availableDriversList[index].driverUid,
                     dealerUid: userEntity.uid,
-                    name: availableDriversList[index].driverName,
+                    driverName: availableDriversList[index].driverName,
                     source: availableDriversList[index].source,
                     destination: availableDriversList[index].destination,
-                    status: 'open', orderId: const Uuid().v1(),
+                    status: 'open', orderId: const Uuid().v1(), dealerName: userEntity.name,
                   ),
                 );
                 showDialog(
@@ -67,7 +67,7 @@ class AvailableDriversScreen extends StatelessWidget {
                   ),
                 );
               },
-              source: availableDriversList[index].source,
+              source: availableDriversList[index].source, actionText: 'Book',
             ),
           );
         },
