@@ -52,51 +52,55 @@ class _HomeScreenDriverState extends State<HomeScreenDriver> {
                   return state.map(
                     initial: (_) => const Text('data'),
                     loaded: (bookings) {
-                       final data=bookings.orderEnityList;
+                      final data = bookings.orderEnityList;
+                      if (data.isEmpty) {
+                        return const Text("No Bookings available");
+                      }
                       return ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount: data.length,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: DriverCard(
-                                  destination: data[index].destination,
-                                  name: data[index].driverName,
-                                  onPress: () async {
-                                    //TODO:update order status
-                                    showDialog(
-                                      context: context,
-                                      builder: (_) => AssetGiffDialog(
-                                        title: const Text(
-                                          "Order Completed",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 24.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        description: const Text(
-                                          "Hurray!!",
-                                          style: TextStyle(
-                                            fontSize: 20.0,
-                                          ),
-                                        ),
-                                        entryAnimation: EntryAnimation.topRight,
-                                        onOkButtonPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        image: Image.asset(
-                                          "assets/images/thank_you.gif",
-                                        ),
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        itemCount: data.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: DriverCard(
+                              destination: data[index].destination,
+                              name: data[index].driverName,
+                              onPress: () async {
+                                //TODO:update order status
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => AssetGiffDialog(
+                                    title: const Text(
+                                      "Order Completed",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 24.0,
+                                        fontWeight: FontWeight.bold,
                                       ),
-                                    );
-                                  },
-                                  source: data[index].source, actionText: 'Complete',
-                                ),
-                              );
-                            },
+                                    ),
+                                    description: const Text(
+                                      "Hurray!!",
+                                      style: TextStyle(
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                    entryAnimation: EntryAnimation.topRight,
+                                    onOkButtonPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    image: Image.asset(
+                                      "assets/images/thank_you.gif",
+                                    ),
+                                  ),
+                                );
+                              },
+                              source: data[index].source,
+                              actionText: 'Complete',
+                            ),
                           );
+                        },
+                      );
                     },
                   );
                 },
