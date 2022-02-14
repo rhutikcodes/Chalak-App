@@ -4,6 +4,7 @@ import 'package:chalak_app/presentation/home_screen/dealer/home_screen_dealer.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giff_dialog/giff_dialog.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../application/cubit/orders_cubit.dart';
 import '../../../domain/home/entity/order_entity.dart';
@@ -33,10 +34,10 @@ class AvailableDriversScreen extends StatelessWidget {
                   OrderEntity(
                     driverUid: availableDriversList[index].driverUid,
                     dealerUid: userEntity.uid,
-                    name: availableDriversList[index].driverName,
+                    driverName: availableDriversList[index].driverName,
                     source: availableDriversList[index].source,
                     destination: availableDriversList[index].destination,
-                    status: 'open',
+                    status: 'open', orderId: const Uuid().v1(), dealerName: userEntity.name,
                   ),
                 );
                 showDialog(
@@ -66,7 +67,7 @@ class AvailableDriversScreen extends StatelessWidget {
                   ),
                 );
               },
-              source: availableDriversList[index].source,
+              source: availableDriversList[index].source, actionText: 'Book',
             ),
           );
         },

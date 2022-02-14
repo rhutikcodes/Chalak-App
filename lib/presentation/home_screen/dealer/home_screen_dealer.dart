@@ -12,6 +12,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:giff_dialog/giff_dialog.dart';
 import 'package:logger/logger.dart';
 import 'package:lottie/lottie.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../domain/home/entity/available_driver_entity.dart';
 
@@ -29,7 +30,6 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
       TextEditingController();
   final TextEditingController routeOneDestinationController =
       TextEditingController();
-  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     final welcomeMessage =
@@ -143,10 +143,12 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                                       OrderEntity(
                                         driverUid: data[index].driverUid,
                                         dealerUid: widget.userEntity.uid,
-                                        name: data[index].driverName,
+                                        driverName: data[index].driverName,
                                         source: data[index].source,
                                         destination: data[index].destination,
                                         status: 'open',
+                                        orderId: const Uuid().v1(),
+                                        dealerName: widget.userEntity.name,
                                       ),
                                     );
                                     showDialog(
@@ -176,7 +178,7 @@ class _HomeScreenDealerState extends State<HomeScreenDealer> {
                                       ),
                                     );
                                   },
-                                  source: data[index].source,
+                                  source: data[index].source, actionText: 'Book',
                                 ),
                               );
                             },
@@ -220,8 +222,9 @@ class DriverCard extends StatelessWidget {
     required this.source,
     required this.destination,
     required this.onPress,
+    required this.actionText,
   }) : super(key: key);
-  final String name, source, destination;
+  final String name, source, destination, actionText;
   final VoidCallback onPress;
   @override
   Widget build(BuildContext context) {
@@ -298,7 +301,7 @@ class DriverCard extends StatelessWidget {
               width: 100,
               child: ElevatedButton(
                 onPressed: onPress,
-                child: const Text("Book"),
+                child: Text(actionText),
               ),
             ),
           ),

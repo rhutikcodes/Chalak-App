@@ -9,7 +9,7 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 
 import 'application/cubit/auth_cubit.dart' as _i11;
-import 'core/firebase_injection_module.dart' as _i14;
+import 'core/firebase_injection_module.dart' as _i15;
 import 'data/auth/repository/firebase_auth_facade.dart' as _i5;
 import 'data/home/repository/available_drivers_repository_impl.dart' as _i7;
 import 'data/home/repository/order_repository_imp.dart' as _i9;
@@ -18,8 +18,9 @@ import 'domain/home/repository/i_available_drivers_repository.dart' as _i6;
 import 'domain/home/repository/i_order_repository.dart' as _i8;
 import 'domain/home/usecase/add_order_usecase.dart' as _i10;
 import 'domain/home/usecase/get_available_driver_data.dart' as _i12;
-import 'domain/home/usecase/get_available_driver_from_route.dart'
-    as _i13; // ignore_for_file: unnecessary_lambdas
+import 'domain/home/usecase/get_available_driver_from_route.dart' as _i13;
+import 'domain/home/usecase/get_bookings_usecase.dart'
+    as _i14; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -42,7 +43,9 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
   gh.factory<_i13.GetAvailableDriverFromRoute>(() =>
       _i13.GetAvailableDriverFromRoute(
           availableDriversRepository: get<_i6.IAvailableDriversRepository>()));
+  gh.factory<_i14.GetBookingsUsecase>(() =>
+      _i14.GetBookingsUsecase(orderRepository: get<_i8.IOrderRepository>()));
   return get;
 }
 
-class _$FirebaseInjectableModule extends _i14.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}

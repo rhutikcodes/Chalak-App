@@ -25,17 +25,21 @@ class _$OrderEntityTearOff {
   _OrderEntity call(
       {required String driverUid,
       required String dealerUid,
-      required String name,
+      required String driverName,
+      required String dealerName,
       required String source,
       required String destination,
-      required String status}) {
+      required String status,
+      required String orderId}) {
     return _OrderEntity(
       driverUid: driverUid,
       dealerUid: dealerUid,
-      name: name,
+      driverName: driverName,
+      dealerName: dealerName,
       source: source,
       destination: destination,
       status: status,
+      orderId: orderId,
     );
   }
 
@@ -51,10 +55,12 @@ const $OrderEntity = _$OrderEntityTearOff();
 mixin _$OrderEntity {
   String get driverUid => throw _privateConstructorUsedError;
   String get dealerUid => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
+  String get driverName => throw _privateConstructorUsedError;
+  String get dealerName => throw _privateConstructorUsedError;
   String get source => throw _privateConstructorUsedError;
   String get destination => throw _privateConstructorUsedError;
   String get status => throw _privateConstructorUsedError;
+  String get orderId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -70,10 +76,12 @@ abstract class $OrderEntityCopyWith<$Res> {
   $Res call(
       {String driverUid,
       String dealerUid,
-      String name,
+      String driverName,
+      String dealerName,
       String source,
       String destination,
-      String status});
+      String status,
+      String orderId});
 }
 
 /// @nodoc
@@ -88,10 +96,12 @@ class _$OrderEntityCopyWithImpl<$Res> implements $OrderEntityCopyWith<$Res> {
   $Res call({
     Object? driverUid = freezed,
     Object? dealerUid = freezed,
-    Object? name = freezed,
+    Object? driverName = freezed,
+    Object? dealerName = freezed,
     Object? source = freezed,
     Object? destination = freezed,
     Object? status = freezed,
+    Object? orderId = freezed,
   }) {
     return _then(_value.copyWith(
       driverUid: driverUid == freezed
@@ -102,9 +112,13 @@ class _$OrderEntityCopyWithImpl<$Res> implements $OrderEntityCopyWith<$Res> {
           ? _value.dealerUid
           : dealerUid // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      driverName: driverName == freezed
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      dealerName: dealerName == freezed
+          ? _value.dealerName
+          : dealerName // ignore: cast_nullable_to_non_nullable
               as String,
       source: source == freezed
           ? _value.source
@@ -117,6 +131,10 @@ class _$OrderEntityCopyWithImpl<$Res> implements $OrderEntityCopyWith<$Res> {
       status: status == freezed
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderId: orderId == freezed
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -132,10 +150,12 @@ abstract class _$OrderEntityCopyWith<$Res>
   $Res call(
       {String driverUid,
       String dealerUid,
-      String name,
+      String driverName,
+      String dealerName,
       String source,
       String destination,
-      String status});
+      String status,
+      String orderId});
 }
 
 /// @nodoc
@@ -152,10 +172,12 @@ class __$OrderEntityCopyWithImpl<$Res> extends _$OrderEntityCopyWithImpl<$Res>
   $Res call({
     Object? driverUid = freezed,
     Object? dealerUid = freezed,
-    Object? name = freezed,
+    Object? driverName = freezed,
+    Object? dealerName = freezed,
     Object? source = freezed,
     Object? destination = freezed,
     Object? status = freezed,
+    Object? orderId = freezed,
   }) {
     return _then(_OrderEntity(
       driverUid: driverUid == freezed
@@ -166,9 +188,13 @@ class __$OrderEntityCopyWithImpl<$Res> extends _$OrderEntityCopyWithImpl<$Res>
           ? _value.dealerUid
           : dealerUid // ignore: cast_nullable_to_non_nullable
               as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      driverName: driverName == freezed
+          ? _value.driverName
+          : driverName // ignore: cast_nullable_to_non_nullable
+              as String,
+      dealerName: dealerName == freezed
+          ? _value.dealerName
+          : dealerName // ignore: cast_nullable_to_non_nullable
               as String,
       source: source == freezed
           ? _value.source
@@ -182,6 +208,10 @@ class __$OrderEntityCopyWithImpl<$Res> extends _$OrderEntityCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as String,
+      orderId: orderId == freezed
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -192,10 +222,12 @@ class _$_OrderEntity implements _OrderEntity {
   const _$_OrderEntity(
       {required this.driverUid,
       required this.dealerUid,
-      required this.name,
+      required this.driverName,
+      required this.dealerName,
       required this.source,
       required this.destination,
-      required this.status});
+      required this.status,
+      required this.orderId});
 
   factory _$_OrderEntity.fromJson(Map<String, dynamic> json) =>
       _$$_OrderEntityFromJson(json);
@@ -205,17 +237,21 @@ class _$_OrderEntity implements _OrderEntity {
   @override
   final String dealerUid;
   @override
-  final String name;
+  final String driverName;
+  @override
+  final String dealerName;
   @override
   final String source;
   @override
   final String destination;
   @override
   final String status;
+  @override
+  final String orderId;
 
   @override
   String toString() {
-    return 'OrderEntity(driverUid: $driverUid, dealerUid: $dealerUid, name: $name, source: $source, destination: $destination, status: $status)';
+    return 'OrderEntity(driverUid: $driverUid, dealerUid: $dealerUid, driverName: $driverName, dealerName: $dealerName, source: $source, destination: $destination, status: $status, orderId: $orderId)';
   }
 
   @override
@@ -225,11 +261,15 @@ class _$_OrderEntity implements _OrderEntity {
             other is _OrderEntity &&
             const DeepCollectionEquality().equals(other.driverUid, driverUid) &&
             const DeepCollectionEquality().equals(other.dealerUid, dealerUid) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.driverName, driverName) &&
+            const DeepCollectionEquality()
+                .equals(other.dealerName, dealerName) &&
             const DeepCollectionEquality().equals(other.source, source) &&
             const DeepCollectionEquality()
                 .equals(other.destination, destination) &&
-            const DeepCollectionEquality().equals(other.status, status));
+            const DeepCollectionEquality().equals(other.status, status) &&
+            const DeepCollectionEquality().equals(other.orderId, orderId));
   }
 
   @override
@@ -237,10 +277,12 @@ class _$_OrderEntity implements _OrderEntity {
       runtimeType,
       const DeepCollectionEquality().hash(driverUid),
       const DeepCollectionEquality().hash(dealerUid),
-      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(driverName),
+      const DeepCollectionEquality().hash(dealerName),
       const DeepCollectionEquality().hash(source),
       const DeepCollectionEquality().hash(destination),
-      const DeepCollectionEquality().hash(status));
+      const DeepCollectionEquality().hash(status),
+      const DeepCollectionEquality().hash(orderId));
 
   @JsonKey(ignore: true)
   @override
@@ -257,10 +299,12 @@ abstract class _OrderEntity implements OrderEntity {
   const factory _OrderEntity(
       {required String driverUid,
       required String dealerUid,
-      required String name,
+      required String driverName,
+      required String dealerName,
       required String source,
       required String destination,
-      required String status}) = _$_OrderEntity;
+      required String status,
+      required String orderId}) = _$_OrderEntity;
 
   factory _OrderEntity.fromJson(Map<String, dynamic> json) =
       _$_OrderEntity.fromJson;
@@ -270,13 +314,17 @@ abstract class _OrderEntity implements OrderEntity {
   @override
   String get dealerUid;
   @override
-  String get name;
+  String get driverName;
+  @override
+  String get dealerName;
   @override
   String get source;
   @override
   String get destination;
   @override
   String get status;
+  @override
+  String get orderId;
   @override
   @JsonKey(ignore: true)
   _$OrderEntityCopyWith<_OrderEntity> get copyWith =>
