@@ -141,21 +141,25 @@ class AuthCubit extends Cubit<AuthState> {
     // ignore: avoid_function_literals_in_foreach_calls
     listOfRoutes.forEach((route) async {
       print('saving ${route.source}');
-      await FirebaseFirestore.instance
+      FirebaseFirestore.instance
           .collection('journey')
           .doc('${route.source} - ${route.destination}')
           .set({
         'source': route.source,
         'destination': route.destination,
-      });
-      print('saving ${route.source} interested dirver');
-      await FirebaseFirestore.instance
-          .collection('journey')
-          .doc('${route.source}, ${route.destination}')
-          .collection('interested_drivers')
-          .add({
-        'uid': driverUid,
-        'driverName': driverName,
+      },
+        SetOptions(merge: true),
+      ).whenComplete(() async {
+        Future.delayed(const Duration(milliseconds: 500), () async {
+          final ref = FirebaseFirestore.instance
+              .collection("journey")
+              .doc('${route.source} - ${route.destination}');
+        await  ref.collection('interested_drivers').add({
+              'uid': driverUid,
+              'driverName': driverName,
+          });
+          print('saving ${route.source} interested driver');
+        });
       });
     });
   }

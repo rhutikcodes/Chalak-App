@@ -2,9 +2,11 @@ import 'package:chalak_app/application/cubit/auth_cubit.dart';
 import 'package:chalak_app/application/cubit/orders_cubit.dart';
 import 'package:chalak_app/presentation/auth/root.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_web_frame/flutter_web_frame.dart';
 import 'package:injectable/injectable.dart';
 
 import 'core/palette.dart';
@@ -22,7 +24,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-     
       providers: [
         BlocProvider<AuthCubit>(
           create: (_) => getIt<AuthCubit>()..handleAppStarted(),
@@ -30,29 +31,35 @@ class MyApp extends StatelessWidget {
         BlocProvider<OrdersCubit>(
           create: (_) => OrdersCubit(),
         ),
-        
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Material App',
-        home: const Root(),
-        theme: ThemeData(
-          platform: TargetPlatform.iOS,
-          visualDensity: VisualDensity.adaptivePlatformDensity,
-          appBarTheme: const AppBarTheme(
-            color: Palette.darkBlue,
-            systemOverlayStyle: SystemUiOverlayStyle.light,
-          ),
-          tabBarTheme: const TabBarTheme(
-            indicator: UnderlineTabIndicator(
-              borderSide: BorderSide(color: Palette.lightBlue),
+      child: FlutterWebFrame(
+        maximumSize: const Size(400.0, 800.0), // Maximum size
+        enabled: kIsWeb, // default is enable, when disable content is full size
+        backgroundColor: Colors.grey, // Background color/white space
+        builder: (BuildContext context) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Chalak App',
+            home: const Root(),
+            theme: ThemeData(
+              platform: TargetPlatform.iOS,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+              appBarTheme: const AppBarTheme(
+                color: Palette.darkBlue,
+                systemOverlayStyle: SystemUiOverlayStyle.light,
+              ),
+              tabBarTheme: const TabBarTheme(
+                indicator: UnderlineTabIndicator(
+                  borderSide: BorderSide(color: Palette.lightBlue),
+                ),
+              ),
+              colorScheme: ColorScheme.fromSwatch().copyWith(
+                secondary: Palette.darkOrange,
+                primary: Palette.lightBlue,
+              ),
             ),
-          ),
-          colorScheme: ColorScheme.fromSwatch().copyWith(
-            secondary: Palette.darkOrange,
-            primary: Palette.lightBlue,
-          ),
-        ),
+          );
+        },
       ),
     );
   }

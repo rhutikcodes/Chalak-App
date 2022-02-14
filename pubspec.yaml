@@ -39,6 +39,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
+  flutter_web_frame: ^0.0.2
   font_awesome_flutter: ^9.2.0
   freezed_annotation: ^1.1.0
   giff_dialog: ^1.0.1

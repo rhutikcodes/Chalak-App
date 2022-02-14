@@ -15,8 +15,12 @@ class FirebaseAuthFacade implements IAuthFacade {
   FirebaseAuthFacade(this._firebaseAuth);
 
   @override
-  Future<bool> isSignIn() async => _firebaseAuth.currentUser?.uid != null;
-
+  Future<bool> isSignIn() async {
+    User? currentUser = _firebaseAuth.currentUser;
+    currentUser ??= await _firebaseAuth.authStateChanges().first;
+    return currentUser?.uid != null;
+  }
+  
   @override
   Future<Either<AuthFailure, Unit>> signInWithEmail(
     String mEmail,
